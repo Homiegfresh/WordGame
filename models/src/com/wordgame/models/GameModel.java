@@ -1,3 +1,7 @@
+package com.wordgame.models;
+
+import com.wordgame.models.enums.GameDifficulty;
+
 /** Base class for all games. */
 abstract public class GameModel {
     /** Primary key for the game table. */

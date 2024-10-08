@@ -1,3 +1,5 @@
+package com.wordgame.models;
+
 /** This class contains the jumble specific configuration. */
 public class JumbleGameModel extends GameModel {
     private WordModel LastWord = new WordModel();

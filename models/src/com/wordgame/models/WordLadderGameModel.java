@@ -1,5 +1,7 @@
+package com.wordgame.models;
+
 /** This class contains the word ladder specific configuration. */
-public class WordLadderGameModel {
+public class WordLadderGameModel extends GameModel {
     /** This word is the starting word for the game. */
     private WordModel FirstWord = new WordModel();
 

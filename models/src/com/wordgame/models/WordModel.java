@@ -1,3 +1,5 @@
+package com.wordgame.models;
+
 /** This class contains properties for words in the games. */
 public class WordModel {
     /** Primary key for the word table. */

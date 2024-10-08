@@ -1,3 +1,5 @@
+package com.wordgame.models;
+
 import java.util.ArrayList;
 import java.util.List;
 
