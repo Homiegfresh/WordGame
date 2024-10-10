@@ -14,35 +14,36 @@ GO
 USE WordGames
 GO
 
+-- Create table for Exercise
+-- NOTE: Records from this table are deleted when games are deleted.
+CREATE TABLE GameConfig
+(
+    [Id] INT IDENTITY(1,1) PRIMARY KEY,
+    [Definition] VARCHAR(MAX)
+)
+GO
+
 -- Create table for WordLadder
 CREATE TABLE WordLadder
 (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     FirstWord VARCHAR(MAX) NOT NULL,
     LastWord VARCHAR(MAX) NOT NULL,
-    LetterCount INT NOT NULL
+    LetterCount INT NOT NULL,
+	GameId INT NOT NULL,
+	FOREIGN KEY (GameId) REFERENCES GameConfig(Id)
 )
-GO
+    GO
 
 -- Create table for Jumble
 CREATE TABLE Jumble
 (
     Id INT IDENTITY(1,1) PRIMARY KEY,
-    FinalWord VARCHAR(MAX) NOT NULL
+    FinalWord VARCHAR(MAX) NOT NULL,
+	GameId INT NOT NULL,
+	FOREIGN KEY (GameId) REFERENCES GameConfig(Id)
 )
     GO
-
--- Create table for Exercise
--- NOTE: Records from this table are deleted when games are deleted.
-CREATE TABLE GameConfig
-(
-    [Id] INT IDENTITY(1,1) PRIMARY KEY,
-    [Definition] VARCHAR(MAX),
-    GameId INT NOT NULL,
-    FOREIGN KEY (GameId) REFERENCES WordLadder(Id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (GameId) REFERENCES Jumble(Id) ON DELETE CASCADE ON UPDATE CASCADE
-)
-GO
 
 -- Inserting Data Fields
 -- Difficulty Level: Easy
