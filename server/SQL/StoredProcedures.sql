@@ -52,8 +52,8 @@ EXEC sp_GetGameConfigById @Id = 4
 EXEC sp_GetGameList
 
 -- Drop Stored Procedures
-DROP PROC sp_WordLadderData
-DROP PROC sp_GameConfigData
-DROP PROC sp_GetRandomWordLadderGame
-DROP PROC sp_GetGameConfigById
-DROP PROC sp_GetGameList
+-- DROP PROC sp_WordLadderData
+-- DROP PROC sp_GameConfigData
+-- DROP PROC sp_GetRandomWordLadderGame
+-- DROP PROC sp_GetGameConfigById
+-- DROP PROC sp_GetGameList
