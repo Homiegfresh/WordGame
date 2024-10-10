@@ -5,7 +5,7 @@ AS BEGIN
 	FROM WordLadder
 END
 
--- Stored Procedure for selecting all from WordLadder
+-- Stored Procedure for selecting all from GameConfig
 CREATE PROCEDURE sp_GameConfigData
 AS BEGIN
 	SELECT *
