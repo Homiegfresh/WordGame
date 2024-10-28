@@ -1,28 +1,42 @@
 package com.wordgame.models;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /** This class holds that generic configuration object for a game. */
 public class GameConfigModel {
     /** Primary key in the database. */
-    private int Id;
+    public int Id;
     /** Foreign key to the game table. */
-    private int GameId;
+    public int GameId;
     /** List of words that are to be used in the game. */
-    private List<WordModel> GameWords = new ArrayList<WordModel>();
+    public List<WordModel> GameWords = new ArrayList<>();
 
-    // region Getters
-    public int GetId() { return Id; }
-    public int GetGameId() { return GameId; }
-    public List<WordModel> GetGameWords() { return GameWords; }
-    // endregion
+    public GameConfigModel() {}
 
-    // region Setters
-    public void SetId(int id) { Id = id; }
-    public void setGameId(int gameId) { GameId = gameId; }
-    public void setGameWords(List<WordModel> gameWords) { GameWords = gameWords; }
-    // endregion
+    public GameConfigModel(ObjectNode jsonObj) {
+        if (jsonObj.has("Id")) {
+            this.Id = jsonObj.get("Id").asInt();
+        }
+
+        if (jsonObj.has("GameId")) {
+            this.GameId = jsonObj.get("GameId").asInt();
+        }
+
+        if (jsonObj.has("GameWords")) {
+            jsonObj.get("GameWords").forEach(wordNode -> {
+                try {
+                    WordModel word = new ObjectMapper().treeToValue(wordNode, WordModel.class);
+                    this.GameWords.add(word);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+    }
 
     /** Allows the system to add words to the game words list. */
     public void addGameWord(WordModel gameWord) {

@@ -3,28 +3,35 @@ package com.wordgame.models;
 /** This class contains the word ladder specific configuration. */
 public class WordLadderGameModel extends GameModel {
     /** This word is the starting word for the game. */
-    private WordModel FirstWord = new WordModel();
+    public String FirstWord;
 
     /** This word is the ending word for the game. */
-    private WordModel LastWord = new WordModel();
+    public String LastWord;
 
-    // region Getters
-    public WordModel getFirstWord() { return FirstWord; }
+    public WordLadderGameModel(ObjectNode jsonObj) throws JsonProcessingException {
+        super();
 
-    public WordModel getLastWord() { return LastWord; }
-    // endregion
+        this.Id = jsonObj.get("Id").asInt();
+        this.FirstWord = jsonObj.get("FirstWord").asText();
+        this.LastWord = jsonObj.get("LastWord").asText();
 
-    // region Setters
-    public void setFirstWord(WordModel firstWord) { FirstWord = firstWord; }
+        // Check if the GameConfig field is present and parse it as a nested JSON object
+        if (jsonObj.has("GameConfig")) {
+            // Assuming ObjectMapper is available or passed in from elsewhere
+            ObjectMapper mapper = new ObjectMapper();
 
-    public void setLastWord(WordModel lastWord) { LastWord = lastWord; }
+            JsonNode gameConfigNode = jsonObj.get("GameConfig");
 
-    public void setFirstWord(String word, String description) {
-        FirstWord = new WordModel(word, description);
+            // If GameConfig is returned as a string, parse it again to an ObjectNode
+            if (gameConfigNode.isTextual()) {
+                gameConfigNode = mapper.readTree(gameConfigNode.asText());
+            }
+
+            if (gameConfigNode.isObject()) {
+                this.GameConfig = new GameConfigModel((ObjectNode) gameConfigNode);
+            } else {
+                throw new IllegalArgumentException("GameConfig is not a valid JSON object");
+            }
+        }
     }
-
-    public void setLastWord(String word, String description) {
-        LastWord = new WordModel(word, description);
-    }
-    // endregion
 }

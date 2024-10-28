@@ -14,7 +14,6 @@ public class MainApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Word Ladder Game");
         stage.setScene(scene);
-        stage.setFullScreen(true);
         stage.show();
     }
 

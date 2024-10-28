@@ -33,28 +33,24 @@ public class GameIntakeController {
 
     @FXML
     protected void onStartClick(ActionEvent event) throws IOException {
-        if (!validate()) {
-            // TODO: Add error message.
-        }
+//        if (!validate()) {
+//            // TODO: Add error message.
+//        }
 
-        int lengthOfWord = Integer.parseInt(lengthOfWords.getText());
-        try {
-            // Load the new FXML file
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Game.fxml"));
-            Parent gamePage = fxmlLoader.load();
+        //int lengthOfWord = Integer.parseInt(lengthOfWords.getText());
+        // Load the new FXML file
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("WordLadder.fxml"));
+        Parent gamePage = fxmlLoader.load();
 
-            GameController controller = fxmlLoader.getController();
-            controller.initializeWordBox(lengthOfWord);
+        WordLadderController controller = fxmlLoader.getController();
+        controller.initialize();
 
-            // Get the current stage
-            Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        // Get the current stage
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
 
-            // Set the new scene
-            Scene newScene = new Scene(gamePage);
-            stage.setScene(newScene);
-            stage.setFullScreen(true);
-            stage.setTitle("Word Ladder"); // Optional: Set the title for the new scene
-        } catch (IOException _) {
-        }
+        // Set the new scene
+        Scene newScene = new Scene(gamePage);
+        stage.setScene(newScene);
+        stage.setTitle("Word Ladder"); // Optional: Set the title for the new scene
     }
 }
