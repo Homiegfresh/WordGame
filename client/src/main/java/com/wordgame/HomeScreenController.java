@@ -6,24 +6,67 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class HomeScreenController {
     @FXML
-    protected void onStartClick(ActionEvent event) throws IOException {
-            // Load the new FXML file
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GameIntake.fxml"));
-            Parent newRoot = fxmlLoader.load();
+    Button jumblesButton;
+    @FXML
+    Button wordLadderButton;
+    @FXML
+    Button startButton;
+    @FXML
+    ImageView closedBook;
+    @FXML
+    ImageView openBook;
+    @FXML
+    Label wordLadderLabel;
+    @FXML
+    Label jumblesLabel;
 
-            // Get the current stage
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    /// This is called upon loading of the home page.
+    public void initialization() {
+        openBook.setVisible(false);
 
-            // Set the new scene
-            Scene newScene = new Scene(newRoot);
-            stage.setScene(newScene);
-            stage.setFullScreen(true);
-            stage.setTitle("Word Ladder");
+        wordLadderLabel.setVisible(false);
+        jumblesLabel.setVisible(false);
+        jumblesButton.setVisible(false);
+        wordLadderButton.setVisible(false);
+    }
+
+    /// This is he click event for the start button on the home screen.
+    @FXML
+    public void displayOpenBook(ActionEvent event) {
+        closedBook.setVisible(false);
+        openBook.setVisible(true);
+        startButton.setVisible(false);
+        wordLadderButton.setVisible(true);
+        jumblesButton.setVisible(true);
+        wordLadderLabel.setVisible(true);
+        jumblesLabel.setVisible(true);
+    }
+
+    public void WordLadderPlay(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("GameIntake.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+
+//        GameIntakeController controller = fxmlLoader.getController();
+//        controller.initialization();
+
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Word Ladder Game");
+        stage.setScene(scene);
+        //stage.setFullScreen(true);
+        stage.show();
+    }
+
+    public void JumblesPlay() {
+
     }
 }

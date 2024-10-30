@@ -1,17 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.wordgame.HomeScreenController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-    <!--<Label fx:id="welcomeText"/>-->
-    <Label>Word Ladder</Label>
-    <Button text="Start" onAction="#onStartClick"/>
-</VBox>
+<!--
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wordgame.HomeScreenController">
+   <children>
+      <Button fx:id="startButton" layoutX="274.0" layoutY="322.0" onAction="#displayOpenBook" text="Start" />
+      <Label layoutX="215.0" layoutY="14.0" prefHeight="80.0" prefWidth="157.0" text="Diction-ary!">
+         <font>
+            <Font name="Curlz MT" size="34.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="closedBook" fitHeight="150.0" fitWidth="200.0" layoutX="232.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@Images/BlueBookClosed.jpg" />
+      </ImageView>
+      <Button fx:id="wordLadderButton" layoutX="59.0" layoutY="188.0" mnemonicParsing="false" onAction="#WordLadderPlay" text="Play!" />
+      <Button fx:id="jumblesButton" layoutX="477.0" layoutY="188.0" mnemonicParsing="false" onAction="#JumblesPlay" text="Play!" />
+      <Label fx:id="wordLadderLabel" layoutX="45.0" layoutY="150.0" text="Word Ladder" />
+      <Label fx:id="jumblesLabel" layoutX="476.0" layoutY="150.0" text="Jumbles" />
+      <ImageView fx:id="openBook" fitHeight="150.0" fitWidth="200.0" layoutX="194.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@Images/BlueBookOpen.jpg" />
+      </ImageView>
+   </children>
+</AnchorPane>
+-->
+
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wordgame.HomeScreenController">
+   <children>
+      <VBox alignment="CENTER" spacing="20">
+         <Label text="Diction-ary!">
+            <font>
+               <Font name="Curlz MT" size="34.0" />
+            </font>
+         </Label>
+         <ImageView fx:id="closedBook" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@Images/BlueBookClosed.jpg" />
+         </ImageView>
+         <ImageView fx:id="openBook" fitHeight="150.0" fitWidth="200.0" layoutX="194.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@Images/BlueBookOpen.jpg" />
+         </ImageView>
+         <HBox alignment="CENTER" spacing="50">
+            <VBox alignment="CENTER">
+               <Label fx:id="wordLadderLabel" text="Word Ladder" />
+               <Button fx:id="wordLadderButton" onAction="#WordLadderPlay" text="Play!" />
+            </VBox>
+            <VBox alignment="CENTER">
+               <Label fx:id="jumblesLabel" text="Jumbles" />
+               <Button fx:id="jumblesButton" onAction="#JumblesPlay" text="Play!" />
+            </VBox>
+         </HBox>
+         <Button fx:id="startButton" onAction="#displayOpenBook" text="Start" />
+      </VBox>
+   </children>
+</StackPane>

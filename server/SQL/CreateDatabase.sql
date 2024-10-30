@@ -44,3 +44,42 @@ CREATE TABLE Jumble
 	FOREIGN KEY (GameId) REFERENCES GameConfig(Id)
 )
     GO
+
+-- Inserting Data Fields
+-- Difficulty Level: Easy
+INSERT INTO WordLadder(FirstWord, LastWord, LetterCount)
+Values('Love', 'Dish', 4);
+GO
+
+INSERT INTO WordLadder(FirstWord, LastWord, LetterCount)
+Values('Hide', 'Bend', 4);
+GO
+
+INSERT INTO WordLadder(FirstWord, LastWord, LetterCount)
+Values('Seed', 'Glow', 4);
+GO
+
+-- Difficulty Level: Medium
+INSERT INTO WordLadder(FirstWord, LastWord, LetterCount)
+Values('Brook', 'Gleam', 5);
+GO
+
+INSERT INTO WordLadder(FirstWord, LastWord, LetterCount)
+Values('Focus', 'Lurid', 5);
+GO
+
+INSERT INTO WordLadder(FirstWord, LastWord, LetterCount)
+Values('Plane', 'Truce', 5);
+GO
+
+-- Difficulty Level: Hard
+INSERT INTO WordLadder(FirstWord, LastWord, LetterCount)
+Values('Stones', 'Shores', 6);
+GO
+
+INSERT INTO WordLadder(FirstWord, LastWord, LetterCount)
+Values('Cuddle', 'Caddle', 6);
+GO
+
+INSERT INTO WordLadder(FirstWord, LastWord, LetterCount)
+Values('Planet', 'Brazer', 6);

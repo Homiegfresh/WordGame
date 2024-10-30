@@ -16,14 +16,16 @@ END
 CREATE PROCEDURE sp_GetRandomWordLadderGame
 	@LetterCount INT -- letter count represents difficulty level
 AS BEGIN
-	DECLARE @RandomWordLadderId INT
-	SELECT TOP 1 @RandomWordLadderId = Id
-	FROM WordLadder
-	WHERE LetterCount = @LetterCount
-	ORDER BY NEWID()
-	SELECT *
-	FROM WordLadder
-	WHERE Id = @RandomWordLadderId
+    SELECT TOP 1
+        wl.Id,
+        wl.FirstWord,
+        wl.LastWord,
+        JSON_QUERY(gc.[Definition]) AS Definition
+    FROM WordLadder wl
+    JOIN GameConfig gc ON gc.Id = wl.GameId
+    WHERE LetterCount = @LetterCount
+    ORDER BY NEWID()
+    FOR JSON PATH, WITHOUT_ARRAY_WRAPPER
 END
 GO
 
@@ -45,11 +47,11 @@ AS BEGIN
 END
 
 -- Example Execution Commands for Stored Procedures
-EXEC sp_WordLadderData
-EXEC sp_GameConfigData
-EXEC sp_GetRandomWordLadderGame @LetterCount = 5
-EXEC sp_GetGameConfigById @Id = 4
-EXEC sp_GetGameList
+--EXEC sp_WordLadderData
+--EXEC sp_GameConfigData
+--EXEC sp_GetRandomWordLadderGame @LetterCount = 5
+--EXEC sp_GetGameConfigById @Id = 4
+--EXEC sp_GetGameList
 
 -- Drop Stored Procedures
 -- DROP PROC sp_WordLadderData
