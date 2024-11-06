@@ -7,11 +7,24 @@ import com.wordgame.models.enums.GameDifficulty;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+/// This utility class helps with the client making service calls.
 public class ServiceHelpers {
+    /// IMPORTANT: This class should never be instantiated. However, this can only be done from inside this class.
+    /// This is meant to be a static class.
     private ServiceHelpers() {
         throw new UnsupportedOperationException("Cannot instantiate service helper class.");
     }
 
+    /**
+     * Retrieves a random Word Ladder game model from the service with the game difficulty.
+     *
+     * <p>This method makes a HTTP request out to the service using {@code RestTemplate}.
+     * It parses the response into a {@code WordLadderGameModel} if the request
+     * is successful. If an error occurs or the response is unsuccessful, it returns {@code null}.</p>
+     *
+     * @param difficulty The difficulty level for the game ({@code GameDifficulty}) enum.
+     * @return A {@code WordLadderGameModel} representing the fetched game if successful, or {@code null} if the request fails.
+     */
     public static WordLadderGameModel getWordLadderGameModel(GameDifficulty difficulty) {
         // Testing: add difficulty back after.
         System.out.println(difficulty);
