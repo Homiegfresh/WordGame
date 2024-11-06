@@ -34,17 +34,12 @@ public class HomeScreenController {
     VBox mainContainer;
 
     /// This is called upon loading of the home page.
-    public void initialization(Stage stage){
+    public void Initialize(Stage stage){
         openBook.setVisible(false);
         wordLadderLabel.setVisible(false);
         jumblesLabel.setVisible(false);
         jumblesButton.setVisible(false);
         wordLadderButton.setVisible(false);
-
-//        stage.heightProperty().addListener((observable, oldValue, newValue) -> {
-//           var newHeight = newValue.doubleValue();
-//           mainContainer.setSpacing(newHeight * 2);
-//        });
     }
 
     /// This is he click event for the start button on the home screen.
@@ -61,23 +56,15 @@ public class HomeScreenController {
 
     /// Used to navigate the user to the game intake screen.
     private void LoadGameIntakeScreen(ActionEvent event, GameType gameType) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("GameIntake.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        final String homeScreenViewName = "GameIntake.fxml";
 
-        GameIntakeController controller = fxmlLoader.getController();
-        controller.initialize(gameType);
+        var viewLoader = new FXMLLoader(getClass().getResource(homeScreenViewName));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        ViewHelpers.RenderView(viewLoader, stage);
 
-        if (gameType == GameType.Jumbles) {
-            stage.setTitle("Jumbles");
-        }
-        else if (gameType == GameType.WordLadder) {
-            stage.setTitle("Word Ladder");
-        }
-
-        stage.setScene(scene);
-        stage.show();
+        GameIntakeController intakeController = viewLoader.getController();
+        intakeController.initialize(gameType);
     }
 
     /// Word ladder button click event.

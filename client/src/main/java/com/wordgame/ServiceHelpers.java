@@ -2,6 +2,7 @@ package com.wordgame;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.wordgame.models.JumbleGameModel;
 import com.wordgame.models.WordLadderGameModel;
 import com.wordgame.models.enums.GameDifficulty;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,7 @@ public class ServiceHelpers {
      * @return A {@code WordLadderGameModel} representing the fetched game if successful, or {@code null} if the request fails.
      */
     public static WordLadderGameModel getWordLadderGameModel(GameDifficulty difficulty) {
-        // Testing: add difficulty back after.
+        // TODO Testing: add difficulty back after.
         System.out.println(difficulty);
         String url = "http://localhost:8080/api/WordLadder/RandomGame?difficulty=" + 4;
         RestTemplate restTemplate = new RestTemplate();
@@ -39,6 +40,28 @@ public class ServiceHelpers {
                 var jsonObj = (ObjectNode)objectMapper.readTree(resp);
 
                 return new WordLadderGameModel(jsonObj);
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static JumbleGameModel getJumbleGameModel(GameDifficulty difficulty) {
+        // Testing: add difficulty back after.
+        System.out.println(difficulty);
+        String url = "http://localhost:8080/api/Jumbles/RandomGame?difficulty=" + 4;
+        RestTemplate restTemplate = new RestTemplate();
+
+        try {
+            ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+            if (response.getStatusCode().is2xxSuccessful()) {
+                var objectMapper = new ObjectMapper();
+                var resp = response.getBody();
+                var jsonObj = (ObjectNode)objectMapper.readTree(resp);
+
+                return new JumbleGameModel();
             } else {
                 return null;
             }

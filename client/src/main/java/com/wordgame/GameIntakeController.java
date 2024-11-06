@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
@@ -62,16 +61,26 @@ public class GameIntakeController {
 
         try {
             if (gameType == GameType.Jumbles) {
-                // TODO: Load Jumbles
+                final String viewName = "Jumbles.fxml";
+
+                var viewLoader = new FXMLLoader(getClass().getResource(viewName));
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                ViewHelpers.RenderView(viewLoader, stage);
+
+                JumblesController controller = viewLoader.getController();
+                controller.initialize(difficultyValue);
             }
             else if (gameType == GameType.WordLadder) {
-                FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("WordLadder.fxml"));
-                Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+                final String viewName = "WordLadder.fxml";
 
-                Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+                var viewLoader = new FXMLLoader(getClass().getResource(viewName));
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-                stage.setScene(scene);
-                stage.show();
+                ViewHelpers.RenderView(viewLoader, stage);
+
+                WordLadderController controller = viewLoader.getController();
+                controller.initialize(difficultyValue);
             }
         }
         catch (Exception e) {
