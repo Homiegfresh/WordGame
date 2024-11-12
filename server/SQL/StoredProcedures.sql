@@ -29,6 +29,22 @@ AS BEGIN
 END
 GO
 
+-- Stored Procedure for grabbing a random game configuration
+CREATE PROCEDURE sp_GetRandomJumblesGame
+@Difficulty INT -- letter count represents difficulty level
+AS BEGIN
+    SELECT TOP 1
+        j.Id,
+        j.FinalWord,
+        JSON_QUERY(gc.[Definition]) AS Definition
+    FROM Jumble j
+    JOIN GameConfig gc ON gc.Id = j.GameId
+    WHERE Difficulty = @Difficulty
+    ORDER BY NEWID()
+    FOR JSON PATH, WITHOUT_ARRAY_WRAPPER
+END
+GO
+
 -- Stored Procedure for grabbing a game configuration by its Id
 CREATE PROCEDURE sp_GetGameConfigById(@Id INT)
 AS BEGIN
