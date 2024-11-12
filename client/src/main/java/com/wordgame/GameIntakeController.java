@@ -1,60 +1,90 @@
 package com.wordgame;
 
+import com.wordgame.models.enums.GameDifficulty;
+import com.wordgame.models.enums.GameType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+* This class is used to determine what game configuration should be used for the instance of the game.
+* The game type is passed in and the user selects a difficulty.
+* Once the difficulty is chosen the system can create a new game.
+*/
 public class GameIntakeController {
+    /// Stores the game type for navigation.
+    private GameType gameType;
+
     @FXML
-    private TextField lengthOfWords;
+    public Button easyButton;
+    @FXML
+    public Button mediumButton;
+    @FXML
+    public Button hardButton;
 
-    private boolean validate() {
-        String lengthOfWordString = lengthOfWords.getText();
-        if (lengthOfWordString.isEmpty()) {
-            return false;
-        }
+    /**
+     * Initializes the controller with the specified game type.
+     * <p>
+     * Sets up the buttons with appropriate game difficulty values for user selection.
+     *
+     * @param type the game type that is being set up.
+     */
+    public void initialize(GameType type) {
+        gameType = type;
 
-        try {
-            Integer.parseInt(lengthOfWordString);
-        }
-        catch (NumberFormatException e) {
-            return false;
-        }
+        // Associates a game difficulty with the button.
+        easyButton.setUserData("EASY");
+        mediumButton.setUserData("MEDIUM");
+        hardButton.setUserData("HARD");
 
-        return true;
+        easyButton.setOnAction(this::difficultySelected);
+        mediumButton.setOnAction(this::difficultySelected);
+        hardButton.setOnAction(this::difficultySelected);
     }
 
+    /**
+     * Handles the difficulty selection event triggered by the user clicking a difficulty button.
+     * <p>
+     * Depending on the selected game type, this method will load the appropriate game configuration.
+     *
+     * @param event the action event triggered by the button click
+     */
     @FXML
-    protected void onStartClick(ActionEvent event) throws IOException {
-        if (!validate()) {
-            // TODO: Add error message.
-        }
+    public void difficultySelected(ActionEvent event) {
+        var difficultyString = (String)((Button) event.getSource()).getUserData();
+        GameDifficulty difficultyValue = GameDifficulty.valueOf(difficultyString);
 
-        int lengthOfWord = Integer.parseInt(lengthOfWords.getText());
         try {
-            // Load the new FXML file
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Game.fxml"));
-            Parent gamePage = fxmlLoader.load();
+            if (gameType == GameType.Jumbles) {
+                final String viewName = "Jumbles.fxml";
 
-            GameController controller = fxmlLoader.getController();
-            controller.initializeWordBox(lengthOfWord);
+                var viewLoader = new FXMLLoader(getClass().getResource(viewName));
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            // Get the current stage
-            Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+                ViewHelpers.RenderView(viewLoader, stage);
 
-            // Set the new scene
-            Scene newScene = new Scene(gamePage);
-            stage.setScene(newScene);
-            stage.setFullScreen(true);
-            stage.setTitle("Word Ladder"); // Optional: Set the title for the new scene
-        } catch (IOException _) {
+                JumblesController controller = viewLoader.getController();
+                controller.initialize(difficultyValue);
+            }
+            else if (gameType == GameType.WordLadder) {
+                final String viewName = "WordLadder.fxml";
+
+                var viewLoader = new FXMLLoader(getClass().getResource(viewName));
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                ViewHelpers.RenderView(viewLoader, stage);
+
+                WordLadderController controller = viewLoader.getController();
+                controller.initialize(difficultyValue);
+            }
+        }
+        catch (Exception e) {
+            // TODO: Error handling.
         }
     }
 }

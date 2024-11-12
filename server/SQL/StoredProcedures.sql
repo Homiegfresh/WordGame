@@ -5,7 +5,7 @@ AS BEGIN
 	FROM WordLadder
 END
 
--- Stored Procedure for selecting all from WordLadder
+-- Stored Procedure for selecting all from GameConfig
 CREATE PROCEDURE sp_GameConfigData
 AS BEGIN
 	SELECT *
@@ -24,6 +24,22 @@ AS BEGIN
     FROM WordLadder wl
     JOIN GameConfig gc ON gc.Id = wl.GameId
     WHERE LetterCount = @LetterCount
+    ORDER BY NEWID()
+    FOR JSON PATH, WITHOUT_ARRAY_WRAPPER
+END
+GO
+
+-- Stored Procedure for grabbing a random game configuration
+CREATE PROCEDURE sp_GetRandomJumblesGame
+@Difficulty INT -- letter count represents difficulty level
+AS BEGIN
+    SELECT TOP 1
+        j.Id,
+        j.FinalWord,
+        JSON_QUERY(gc.[Definition]) AS Definition
+    FROM Jumble j
+    JOIN GameConfig gc ON gc.Id = j.GameId
+    WHERE Difficulty = @Difficulty
     ORDER BY NEWID()
     FOR JSON PATH, WITHOUT_ARRAY_WRAPPER
 END

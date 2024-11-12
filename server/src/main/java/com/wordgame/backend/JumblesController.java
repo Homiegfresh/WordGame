@@ -16,19 +16,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/WordLadder")
-public class WordLadderController {
+@RequestMapping("/api/Jumbles")
+public class JumblesController {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @GetMapping("/RandomGame")
     public ResponseEntity<String> RandomWordLadderGame(@RequestParam int difficulty) {
         try (Connection connection = Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();
-            CallableStatement callableStatement = connection.prepareCall("{call sp_GetRandomWordLadderGame(?)}")) {
-            callableStatement.setInt(1, difficulty);
+             CallableStatement callableStatement = connection.prepareCall("{call sp_GetRandomJumblesGame(?)}")) {
+             callableStatement.setInt(1, difficulty);
 
-            // Execute the stored procedure
-            ResultSet rs = callableStatement.executeQuery();
+             // Execute the stored procedure
+             ResultSet rs = callableStatement.executeQuery();
 
             // Process JSON result set
             if (rs.next()) {

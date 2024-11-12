@@ -29,7 +29,7 @@ CREATE TABLE WordLadder
     Id INT IDENTITY(1,1) PRIMARY KEY,
     FirstWord VARCHAR(MAX) NOT NULL,
     LastWord VARCHAR(MAX) NOT NULL,
-    LetterCount INT NOT NULL,
+    Difficulty INT NOT NULL,
 	GameId INT NOT NULL,
 	FOREIGN KEY (GameId) REFERENCES GameConfig(Id)
 )
@@ -40,6 +40,7 @@ CREATE TABLE Jumble
 (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     FinalWord VARCHAR(MAX) NOT NULL,
+    Difficulty INT NOT NULL,
 	GameId INT NOT NULL,
 	FOREIGN KEY (GameId) REFERENCES GameConfig(Id)
 )
