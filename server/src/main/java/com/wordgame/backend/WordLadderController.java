@@ -25,7 +25,9 @@ public class WordLadderController {
     public ResponseEntity<String> RandomWordLadderGame(@RequestParam int difficulty) {
         try (Connection connection = Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();
             CallableStatement callableStatement = connection.prepareCall("{call sp_GetRandomWordLadderGame(?)}")) {
-            callableStatement.setInt(1, difficulty);
+            //callableStatement.setInt(1, difficulty);
+            // TESTING
+            callableStatement.setInt(1, 4);
 
             // Execute the stored procedure
             ResultSet rs = callableStatement.executeQuery();
