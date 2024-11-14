@@ -1,4 +1,6 @@
+-- Query for all word ladder data entry
 -- Inserting Data Fields into the GameConfig Table
+
 -- Game1
 INSERT INTO [GameConfig] ([Definition])
 VALUES (
@@ -315,64 +317,64 @@ VALUES (
 
 -- Inserting Data Fields
 -- Difficulty Level: Easy
-INSERT INTO WordLadder(FirstWord, LastWord, LetterCount, GameId)
-Values('Love', 'Dish', 4, 1);
+INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
+Values('Love', 'Dish', 1, 1);
 GO
 
-INSERT INTO WordLadder(FirstWord, LastWord, LetterCount, GameId)
-Values('Hide', 'Bend', 4, 2);
+INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
+Values('Hide', 'Bend', 1, 2);
 GO
 
-INSERT INTO WordLadder(FirstWord, LastWord, LetterCount, GameId)
-Values('Seed', 'Glow', 4, 3);
+INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
+Values('Seed', 'Glow', 1, 3);
 GO
 
-INSERT INTO WordLadder(FirstWord, LastWord, LetterCount, GameId)
-Values('Play', 'Clap', 4, 4);
+INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
+Values('Play', 'Clap', 1, 4);
 GO
 
-INSERT INTO WordLadder(FirstWord, LastWord, LetterCount, GameId)
-Values('Wine', 'Bear', 4, 5);
+INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
+Values('Wine', 'Bear', 1, 5);
 GO
 
 -- Difficulty Level: Medium
-INSERT INTO WordLadder(FirstWord, LastWord, LetterCount, GameId)
-Values('Brook', 'Gleam', 5, 6);
+INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
+Values('Brook', 'Gleam', 2, 6);
 GO
 
-INSERT INTO WordLadder(FirstWord, LastWord, LetterCount, GameId)
-Values('Focus', 'Lurid', 5, 7);
+INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
+Values('Focus', 'Lurid', 2, 7);
 GO
 
-INSERT INTO WordLadder(FirstWord, LastWord, LetterCount, GameId)
-Values('Plane', 'Truce', 5, 8);
+INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
+Values('Plane', 'Truce', 2, 8);
 GO
 
-INSERT INTO WordLadder(FirstWord, LastWord, LetterCount, GameId)
-Values('Shake', 'Scale', 5, 9);
+INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
+Values('Shake', 'Scale', 2, 9);
 GO
 
-INSERT INTO WordLadder(FirstWord, LastWord, LetterCount, GameId)
-Values('Think', 'Share', 5, 10);
+INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
+Values('Think', 'Share', 2, 10);
 GO
 
 -- Difficulty Level: Hard
-INSERT INTO WordLadder(FirstWord, LastWord, LetterCount, GameId)
-Values('Stones', 'Shores', 6, 11);
+INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
+Values('Stones', 'Shores', 3, 11);
 GO
 
-INSERT INTO WordLadder(FirstWord, LastWord, LetterCount, GameId)
-Values('Cuddle', 'Caddle', 6, 12);
+INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
+Values('Cuddle', 'Caddle', 3, 12);
 GO
 
-INSERT INTO WordLadder(FirstWord, LastWord, LetterCount, GameId)
-Values('Planet', 'Brazer', 6, 13);
+INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
+Values('Planet', 'Brazer', 3, 13);
 GO
 
-INSERT INTO WordLadder(FirstWord, LastWord, LetterCount, GameId)
-Values('Batter', 'Hatter', 6, 14);
+INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
+Values('Batter', 'Hatter', 3, 14);
 GO
 
-INSERT INTO WordLadder(FirstWord, LastWord, LetterCount, GameId)
-Values('Dinner', 'Finder', 6, 15);
+INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
+Values('Dinner', 'Finder', 3, 15);
 GO

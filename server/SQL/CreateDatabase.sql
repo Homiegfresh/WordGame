@@ -24,6 +24,7 @@ CREATE TABLE GameConfig
 GO
 
 -- Create table for WordLadder
+-- Storing difficulty level instead of letter count?
 CREATE TABLE WordLadder
 (
     Id INT IDENTITY(1,1) PRIMARY KEY,
@@ -36,11 +37,14 @@ CREATE TABLE WordLadder
 GO
 
 -- Create table for Jumble
+-- ********** Need for holding final word's definition?
+-- Storing difficulty level instead of letter count?
+
 CREATE TABLE Jumble
 (
     Id INT IDENTITY(1,1) PRIMARY KEY,
-    FinalWord VARCHAR(MAX) NOT NULL,
-    Difficulty INT NOT NULL,
+    [FinalWord] VARCHAR(MAX) NOT NULL,
+	Difficulty INT NOT NULL,
 	GameId INT NOT NULL,
 	FOREIGN KEY (GameId) REFERENCES GameConfig(Id)
 )
