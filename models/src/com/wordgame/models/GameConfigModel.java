@@ -22,15 +22,16 @@ public class GameConfigModel {
             this.Id = jsonObj.get("Id").asInt();
         }
 
-        if (jsonObj.has("GameId")) {
-            this.GameId = jsonObj.get("GameId").asInt();
+        if (jsonObj.has("Id")) {
+            this.GameId = jsonObj.get("Id").asInt();
         }
 
-        if (jsonObj.has("GameWords")) {
-            jsonObj.get("GameWords").forEach(wordNode -> {
+        if (jsonObj.has("Definition")) {
+            jsonObj.get("Definition").forEach(wordNode -> {
                 try {
-                    WordModel word = new ObjectMapper().treeToValue(wordNode, WordModel.class);
-                    this.GameWords.add(word);
+                    var wordString = wordNode.get("Word").asText();
+                    var wordDescription = wordNode.get("Description").asText();
+                    this.GameWords.add(new WordModel(wordString, wordDescription));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

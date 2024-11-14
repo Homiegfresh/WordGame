@@ -9,10 +9,7 @@ public class JumblesController {
 
     /**
      * Called to instantiate the word ladder game.
-     * <p>
-     *     <b><code>difficulty</code></b>: Difficulty of the game that should be played.
-     * </p>
-     * @param difficulty
+     * @param difficulty Difficulty of the random game fetched.
      */
     public void initialize(GameDifficulty difficulty) {
         model = ServiceHelpers.getJumbleGameModel(difficulty);
