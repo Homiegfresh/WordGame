@@ -78,6 +78,40 @@ AS BEGIN
 	JOIN GameConfig gc ON gc.Id = j.GameId
 END
 
+CREATE PROC sp_WordLadderValidateInput
+(
+    @GameId INT,
+    @Word VARCHAR(MAX)
+)
+AS
+BEGIN
+    -- User somehow inputted a word with length 0 or NULL
+    IF @Word IS NULL OR LEN(@Word) = 0
+    BEGIN
+        SELECT 0
+        RETURN
+    END
+
+    DECLARE @wordCount INT
+    SET @wordCount = (
+        SELECT COUNT (*)
+        FROM WordLadder wl
+        JOIN GameConfig gc ON gc.Id = wl.GameId
+        CROSS APPLY OPENJSON(gc.[Definition])
+        WITH
+        (
+          Word VARCHAR(MAX) '$.Word'
+        ) w
+        WHERE wl.Id = @GameId AND w.Word = @Word
+    )
+
+    IF @wordCount > 0
+    BEGIN
+        SELECT 1 RETURN
+    END
+    ELSE SELECT 0
+END
+
 /*
 -- Example Execution Commands for Stored Procedures
 EXEC sp_WordLadderData

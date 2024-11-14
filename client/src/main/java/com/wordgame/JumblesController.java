@@ -12,6 +12,6 @@ public class JumblesController {
      * @param difficulty Difficulty of the random game fetched.
      */
     public void initialize(GameDifficulty difficulty) {
-        model = ServiceHelpers.getJumbleGameModel(difficulty);
+        model = ServiceHelpers.GetRandomJumblesGame(difficulty);
     }
 }

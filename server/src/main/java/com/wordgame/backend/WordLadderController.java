@@ -42,4 +42,27 @@ public class WordLadderController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("SQL Error occurred: " + e.getMessage());
         }
     }
+
+    @GetMapping("/ValidateInput")
+    public ResponseEntity<String> ValidateInput(@RequestParam int gameId, @RequestParam String word) {
+        try (Connection connection = Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();
+            CallableStatement callableStatement = connection.prepareCall("{call sp_WordLadderValidateInput(?, ?)}")) {
+            callableStatement.setInt(1, gameId);
+            callableStatement.setString(2, word);
+
+            // Execute the stored procedure
+            ResultSet rs = callableStatement.executeQuery();
+
+            // Process JSON result set
+            if (rs.next()) {
+                var result = rs.getBoolean(1);
+                return ResponseEntity.ok(result ? "true" : "false");
+            }
+            else {
+                return ResponseEntity.ok("false");
+            }
+        } catch (SQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("SQL Error occurred: " + e.getMessage());
+        }
+    }
 }
