@@ -12,7 +12,7 @@ public class WordLadderController {
     private WordLadderGameModel Model;
     private int CurrentWordIndex = -1;
 
-    public VBox WordContainer;
+    public VBox GameContainer;
 
     public void initialize(GameDifficulty gameDifficulty) {
         Model = ServiceHelpers.getWordLadderGameModel(gameDifficulty);
@@ -58,7 +58,7 @@ public class WordLadderController {
         indWordContainer.getChildren().add(textBoxContainer);
 
         // Add the new word input instance to the game container.
-        WordContainer.getChildren().add(indWordContainer);
+        GameContainer.getChildren().add(indWordContainer);
 
         CurrentWordIndex++;
     }

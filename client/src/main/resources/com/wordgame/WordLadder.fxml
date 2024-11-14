@@ -13,7 +13,7 @@
                     <Insets top="10.0" />
                  </VBox.margin>
               </Label>
-                <VBox fx:id="WordContainer">
+                <VBox fx:id="GameContainer">
                 </VBox>
             </VBox>
         </HBox>

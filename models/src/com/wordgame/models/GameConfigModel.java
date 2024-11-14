@@ -1,6 +1,7 @@
 package com.wordgame.models;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.util.ArrayList;
@@ -17,26 +18,35 @@ public class GameConfigModel {
 
     public GameConfigModel() {}
 
-    public GameConfigModel(ObjectNode jsonObj) {
-        if (jsonObj.has("Id")) {
-            this.Id = jsonObj.get("Id").asInt();
-        }
+    public GameConfigModel(ArrayNode jsonObj) {
+//        if (jsonObj.has("Id")) {
+//            this.Id = jsonObj.get("Id").asInt();
+//        }
+//
+//        if (jsonObj.has("Id")) {
+//            this.GameId = jsonObj.get("Id").asInt();
+//        }
 
-        if (jsonObj.has("Id")) {
-            this.GameId = jsonObj.get("Id").asInt();
-        }
-
-        if (jsonObj.has("Definition")) {
-            jsonObj.get("Definition").forEach(wordNode -> {
-                try {
-                    var wordString = wordNode.get("Word").asText();
-                    var wordDescription = wordNode.get("Description").asText();
-                    this.GameWords.add(new WordModel(wordString, wordDescription));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-        }
+        jsonObj.forEach(wordNode -> {
+            try {
+                var wordString = wordNode.get("Word").asText();
+                var wordDescription = wordNode.get("Description").asText();
+                this.GameWords.add(new WordModel(wordString, wordDescription));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+//        if (jsonObj.has("Definition")) {
+//            jsonObj.get("Definition").forEach(wordNode -> {
+//                try {
+//                    var wordString = wordNode.get("Word").asText();
+//                    var wordDescription = wordNode.get("Description").asText();
+//                    this.GameWords.add(new WordModel(wordString, wordDescription));
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            });
+//        }
     }
 
     /** Allows the system to add words to the game words list. */

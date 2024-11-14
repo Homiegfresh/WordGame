@@ -29,7 +29,7 @@ public class ServiceHelpers {
     public static WordLadderGameModel getWordLadderGameModel(GameDifficulty difficulty) {
         // TODO Testing: add difficulty back after.
         System.out.println(difficulty);
-        String url = "http://localhost:8080/api/WordLadder/RandomGame?difficulty=" + 4;
+        String url = "http://localhost:8080/api/WordLadder/RandomGame?difficulty=" + difficulty.ordinal();
         RestTemplate restTemplate = new RestTemplate();
 
         try {
