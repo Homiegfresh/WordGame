@@ -1,30 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<?import javafx.scene.control.*?>-->
+<!--<?import javafx.scene.layout.*?>-->
+<!--<?import javafx.scene.text.*?>-->
+<!--<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wordgame.WordLadderController">-->
+<!--    <center>-->
+<!--        <HBox alignment="CENTER" spacing="10">-->
+<!--            <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="613.0">-->
+<!--            <HBox prefHeight="100.0" prefWidth="200.0">-->
+<!--               <children>-->
+<!--                  <Button mnemonicParsing="false" text="Button" />-->
+<!--                    <Label text="Word Ladder" textAlignment="CENTER" />-->
+<!--               </children>-->
+<!--            </HBox>-->
+<!--                <Label fx:id="StartingWordLabel" style="-fx-font-weight: bold;">-->
+<!--               <font>-->
+<!--                  <Font size="24.0" />-->
+<!--               </font></Label>-->
+<!--                <VBox fx:id="GameContainer">-->
+<!--                </VBox>-->
+<!--            <Label fx:id="FinalWordLabel" style="-fx-font-weight: bold;">-->
+<!--               <font>-->
+<!--                  <Font size="24.0" />-->
+<!--               </font></Label>-->
+<!--            </VBox>-->
+<!--        </HBox>-->
+<!--    </center>-->
+<!--</BorderPane>-->
+
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wordgame.WordLadderController">
-    <center>
-        <HBox alignment="CENTER" spacing="10">
-            <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="292.0">
-              <Label text="Word Ladder" textAlignment="CENTER">
-                 <VBox.margin>
-                    <Insets top="10.0" />
-                 </VBox.margin>
-              </Label>
-                <Label fx:id="StartingWordLabel" style="-fx-font-weight: bold;">
-               <font>
-                  <Font size="24.0" />
-               </font></Label>
-                <VBox fx:id="GameContainer">
-                </VBox>
-            <Label fx:id="FinalWordLabel" style="-fx-font-weight: bold;">
-               <font>
-                  <Font size="24.0" />
-               </font></Label>
-            </VBox>
+
+    <!-- Top Region for Button -->
+    <top>
+        <HBox alignment="TOP_LEFT">
+            <Button fx:id="HomeButton" mnemonicParsing="false" onMouseClicked="#RedirectHome" text="Button" />
         </HBox>
+    </top>
+
+    <!-- Center Region for "Word Ladder" Label and Game Elements -->
+    <center>
+        <VBox alignment="CENTER" prefHeight="375.0" prefWidth="541.0" spacing="20">
+            <!-- Word Ladder Label -->
+            <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Word Ladder" textAlignment="CENTER" />
+
+            <!-- Game Components -->
+            <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="613.0" spacing="10">
+                <!-- Starting Word Label -->
+                <Label fx:id="StartingWordLabel" style="-fx-font-weight: bold;">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+
+                <!-- Game Container -->
+                <VBox fx:id="GameContainer" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="400.0" />
+
+                <!-- Final Word Label -->
+                <Label fx:id="FinalWordLabel" style="-fx-font-weight: bold;">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+            </VBox>
+        </VBox>
     </center>
 </BorderPane>

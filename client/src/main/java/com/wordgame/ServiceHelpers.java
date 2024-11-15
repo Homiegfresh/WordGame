@@ -87,8 +87,6 @@ public class ServiceHelpers {
      * @return A {@code JumbleGameModel} representing the fetched game if successful, or {@code null} if the request fails.
      */
     public static JumbleGameModel GetRandomJumblesGame(GameDifficulty difficulty) {
-        // Testing: add difficulty back after.
-        System.out.println(difficulty);
         var url = "http://localhost:8080/api/Jumbles/RandomGame?difficulty=" + 4;
         RestTemplate restTemplate = new RestTemplate();
 

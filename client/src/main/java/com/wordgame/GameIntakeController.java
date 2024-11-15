@@ -56,31 +56,24 @@ public class GameIntakeController {
      */
     @FXML
     public void difficultySelected(ActionEvent event) {
-        var difficultyString = (String)((Button) event.getSource()).getUserData();
-        GameDifficulty difficultyValue = GameDifficulty.valueOf(difficultyString);
+        final var stage = (Stage) easyButton.getScene().getWindow();
+        final var difficultyString = (String)((Button) event.getSource()).getUserData();
+        final GameDifficulty difficultyValue = GameDifficulty.valueOf(difficultyString);
 
         try {
             if (gameType == GameType.Jumbles) {
                 final String viewName = "Jumbles.fxml";
 
-                var viewLoader = new FXMLLoader(getClass().getResource(viewName));
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-                ViewHelpers.RenderView(viewLoader, stage);
-
-                JumblesController controller = viewLoader.getController();
-                controller.initialize(difficultyValue);
+                ViewHelpers.<JumblesController>Navigate(stage, viewName, controller ->
+                    controller.initialize(difficultyValue)
+                );
             }
             else if (gameType == GameType.WordLadder) {
                 final String viewName = "WordLadder.fxml";
 
-                var viewLoader = new FXMLLoader(getClass().getResource(viewName));
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-                ViewHelpers.RenderView(viewLoader, stage);
-
-                WordLadderController controller = viewLoader.getController();
-                controller.initialize(difficultyValue);
+                ViewHelpers.<WordLadderController>Navigate(stage, viewName, controller ->
+                    controller.initialize(difficultyValue)
+                );
             }
         }
         catch (Exception e) {

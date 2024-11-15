@@ -3,16 +3,22 @@ package com.wordgame;
 import com.wordgame.models.WordLadderGameModel;
 import com.wordgame.models.WordModel;
 import com.wordgame.models.enums.GameDifficulty;
+import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class WordLadderController {
     private WordLadderGameModel Model;
     private int TotalGameWords = 0;
     private int CurrentWordIndex = -1;
+
+    public Button HomeButton;
 
     public VBox GameContainer;
     public Label StartingWordLabel;
@@ -40,26 +46,51 @@ public class WordLadderController {
         FinalWordLabel.setText("Final Word: " + Model.LastWord);
     }
 
+    @FXML
+    public void RedirectHome(MouseEvent event) {
+        var stage = (Stage) HomeButton.getScene().getWindow();
+        ViewHelpers.RedirectHome(stage);
+    }
+
     /**
-     *
      * @param word The word associated with the textbox to be rendered.
      */
     private void RenderWordTextBox(WordModel word) {
+        final var description = word.getDescription();
+
         // Build container that holds the entire instance of a word input.
-        var indWordContainer = new VBox();
-        // Add the description label above where the textbox will be.
-        var wordDescriptionLabel = new Label(word.getDescription());
+        var wordContainer = new VBox();
+        wordContainer.setAlignment(Pos.TOP_CENTER);
+        var wordDescriptionLabel = new Label(description);
+
+        // This prevents the UI from cutting off the text of the description.
         wordDescriptionLabel.setWrapText(true);
-        indWordContainer.getChildren().add(wordDescriptionLabel);
+
+        // Add the description label above where the textbox will be.
+        wordContainer.getChildren().add(wordDescriptionLabel);
 
         // Make a new container where the textbox and validation button will be.
         var textBoxContainer = new HBox();
-        // Add the textbox for word input.
+        textBoxContainer.setAlignment(Pos.TOP_CENTER);
         textBoxContainer.getChildren().add(new TextField());
+        wordContainer.getChildren().add(textBoxContainer);
+            
         // Add a button for the user to validate their word entry.
+        var validationButton = BuildValidationButton();
+
+        // Add validation button to the container with the textbox.
+        textBoxContainer.getChildren().add(validationButton);
+
+        // Add the new word input instance to the game container.
+        GameContainer.getChildren().add(wordContainer);
+
+        // Increment the current word index.
+        CurrentWordIndex++;
+    }
+
+    private Button BuildValidationButton() {
         var validationButton = new Button("Validate");
 
-        // Add click event
         validationButton.setOnMouseClicked(event -> {
             HBox container = (HBox)validationButton.getParent();
             TextField textbox = (TextField)container.getChildren().getFirst();
@@ -69,7 +100,8 @@ public class WordLadderController {
 
             if (isValid) {
                 if (CurrentWordIndex + 1 >= TotalGameWords) {
-                    // They win the game!
+                    var stage = (Stage)validationButton.getScene().getWindow();
+                    ViewHelpers.Navigate(stage, "WinScreen.fxml", null);
                     return;
                 }
 
@@ -80,22 +112,11 @@ public class WordLadderController {
                 // TODO: Show message that user got it wrong. Maybe keep score?
             }
         });
-
-        // Add validation button to the container with the textbox.
-        textBoxContainer.getChildren().add(validationButton);
-
-        // Add container with word input and validation button to word instance control.
-        indWordContainer.getChildren().add(textBoxContainer);
-
-        // Add the new word input instance to the game container.
-        GameContainer.getChildren().add(indWordContainer);
-
-        // Increment the current word index.
-        CurrentWordIndex++;
+        
+        return validationButton;
     }
 
-    // Ideally this needs to talk to the server to confirm the word.
-    // However, we are out of time folks... so we will check locally instead.
+    // Makes a call to the server to validate the word.
     private boolean ValidateWordEntry(String word) {
         return ServiceHelpers.ValidateWordLadderInput(Model.Id, word);
     }
