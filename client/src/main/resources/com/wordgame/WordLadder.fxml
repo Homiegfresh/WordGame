@@ -38,7 +38,7 @@
     <!-- Top Region for Button -->
     <top>
         <HBox alignment="TOP_LEFT">
-            <Button fx:id="HomeButton" mnemonicParsing="false" onMouseClicked="#RedirectHome" text="Button" />
+            <Button fx:id="HomeButton" mnemonicParsing="false" onMouseClicked="#RedirectHome" text="Home" />
         </HBox>
     </top>
 

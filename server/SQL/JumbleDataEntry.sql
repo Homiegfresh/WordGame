@@ -371,49 +371,49 @@ VALUES ('[
 
 -- Insert Statements for Jumble table
 INSERT INTO Jumble([FinalWord], Difficulty, GameId)
-Values( '[{"Word"": Dose", "Description": "A quantity of medicine to be taken at a time."}]', 1, 16);
+Values( '{"Word"": Dose", "Description": "A quantity of medicine to be taken at a time."}', 1, 16);
 GO
 
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
-VALUES('[{"Word": "Hide", "Description": "Conceal from sight."}]', 1, 17);
+VALUES('{"Word": "Hide", "Description": "Conceal from sight."}', 1, 17);
 GO
 
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
-VALUES('[{"Word": "Play", "Description": "Engage in activity for enjoyment."}]', 1, 18);
+VALUES('{"Word": "Play", "Description": "Engage in activity for enjoyment."}', 1, 18);
 GO
 
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
-VALUES('[{"Word": "Ware", "Description": "Goods for sale."}]', 1, 19);
+VALUES('{"Word": "Ware", "Description": "Goods for sale."}', 1, 19);
 GO
 
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
-VALUES('[{"Word": "Gloom", "Description": "Partial or total darkness."}]', 2, 20);
+VALUES('{"Word": "Gloom", "Description": "Partial or total darkness."}', 2, 20);
 GO
 
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
-VALUES('[{"Word": "Lucid", "Description": "Clear and easy to understand."}]', 2, 21);
+VALUES('{"Word": "Lucid", "Description": "Clear and easy to understand."}', 2, 21);
 GO
 
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
-VALUES('[{"Word": "Shark", "Description": "A large, predatory fish."}]', 2, 22);
+VALUES('{"Word": "Shark", "Description": "A large, predatory fish."}', 2, 22);
 GO
 
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
-VALUES('[{"Word": "Gleam", "Description": "A faint or brief light."}]', 2, 23);
+VALUES('{"Word": "Gleam", "Description": "A faint or brief light."}', 2, 23);
 GO
 
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
-VALUES('[{"Word": "Shores", "Description": "Land along the edge of a sea, lake, or ocean."}]', 3, 24);
+VALUES('{"Word": "Shores", "Description": "Land along the edge of a sea, lake, or ocean."}', 3, 24);
 GO
 
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
-VALUES('[{"Word": "Fuddle", "Description": "Confuse or make muddled."}]', 3, 25);
+VALUES('{"Word": "Fuddle", "Description": "Confuse or make muddled."}', 3, 25);
 GO
 
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
-VALUES('[{"Word": "Finger", "Description": "One of the five digits of the hand."}]', 3, 26);
+VALUES('{"Word": "Finger", "Description": "One of the five digits of the hand."}', 3, 26);
 GO
 
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
-VALUES('[{"Word": "Caddle", "Description": "Act in a silly or unproductive manner."}]', 3, 27);
+VALUES('{"Word": "Caddle", "Description": "Act in a silly or unproductive manner."}', 3, 27);
 GO

@@ -3,9 +3,6 @@ package com.wordgame;
 import com.wordgame.models.enums.GameType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -56,15 +53,11 @@ public class HomeScreenController {
 
     /// Used to navigate the user to the game intake screen.
     private void LoadGameIntakeScreen(ActionEvent event, GameType gameType) throws IOException {
-        final String homeScreenViewName = "GameIntake.fxml";
+        final Stage stage = (Stage) jumblesButton.getScene().getWindow();
 
-        var viewLoader = new FXMLLoader(getClass().getResource(homeScreenViewName));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        ViewHelpers.RenderView(viewLoader, stage);
-
-        GameIntakeController intakeController = viewLoader.getController();
-        intakeController.initialize(gameType);
+        ViewHelpers.<GameIntakeController>Navigate(stage, "GameIntake.fxml", controller ->
+            controller.initialize(gameType)
+        );
     }
 
     /// Word ladder button click event.

@@ -1,7 +1,6 @@
 package com.wordgame;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -9,12 +8,7 @@ import java.io.IOException;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        final String homeScreenViewName = "HomeScreen.fxml";
-        var viewLoader = new FXMLLoader(getClass().getResource(homeScreenViewName));
-
-        ViewHelpers.RenderView(viewLoader, stage);
-        HomeScreenController homeController = viewLoader.getController();
-        homeController.Initialize(stage);
+        ViewHelpers.RedirectHome(stage);
 
 //        // Load the FXML file, which likely contains a layout better suited for responsive behavior.
 //        var fxmlLoader = new FXMLLoader(MainApplication.class.getResource("HomeScreen.fxml"));

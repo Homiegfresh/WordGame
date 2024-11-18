@@ -3,19 +3,26 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane
-        xmlns="http://javafx.com/javafx"
-        xmlns:fx="http://javafx.com/fxml"
-        fx:controller="com.wordgame.JumblesController"
-        prefHeight="400.0"
-        prefWidth="600.0"
-        maxHeight="-Infinity"
-        maxWidth="-Infinity"
->
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wordgame.JumblesController">
+
+    <!-- Top Region for Button -->
     <top>
-        <Label>Game Placeholder</Label>
+        <HBox alignment="TOP_LEFT">
+            <Button mnemonicParsing="false" onMouseClicked="#RedirectHome" text="Home" />
+        </HBox>
     </top>
+
+    <!-- Center Region for "Word Ladder" Label and Game Elements -->
     <center>
-        <HBox fx:id="WordContainer" alignment="CENTER"  spacing="10"/>
+        <VBox alignment="CENTER" prefHeight="375.0" prefWidth="541.0" spacing="20">
+            <!-- Word Ladder Label -->
+            <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Jumbles" textAlignment="CENTER" />
+
+            <!-- Game Components -->
+            <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="613.0" spacing="10">
+                <!-- Game Container -->
+                <VBox fx:id="GameContainer" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="400.0" />
+            </VBox>
+        </VBox>
     </center>
 </BorderPane>

@@ -27,8 +27,6 @@ public class ServiceHelpers {
      * @return A {@code WordLadderGameModel} representing the fetched game if successful, or {@code null} if the request fails.
      */
     public static WordLadderGameModel GetRandomWordLadderGame(GameDifficulty difficulty) {
-        // TODO Testing: add difficulty back after.
-        System.out.println(difficulty);
         var url = "http://localhost:8080/api/WordLadder/RandomGame?difficulty=" + difficulty.ordinal();
         RestTemplate restTemplate = new RestTemplate();
 
@@ -87,7 +85,7 @@ public class ServiceHelpers {
      * @return A {@code JumbleGameModel} representing the fetched game if successful, or {@code null} if the request fails.
      */
     public static JumbleGameModel GetRandomJumblesGame(GameDifficulty difficulty) {
-        var url = "http://localhost:8080/api/Jumbles/RandomGame?difficulty=" + 4;
+        var url = "http://localhost:8080/api/Jumbles/RandomGame?difficulty=" + difficulty.ordinal();
         RestTemplate restTemplate = new RestTemplate();
 
         try {
@@ -97,7 +95,7 @@ public class ServiceHelpers {
                 var resp = response.getBody();
                 var jsonObj = (ObjectNode)objectMapper.readTree(resp);
 
-                return new JumbleGameModel();
+                return new JumbleGameModel(jsonObj);
             } else {
                 return null;
             }

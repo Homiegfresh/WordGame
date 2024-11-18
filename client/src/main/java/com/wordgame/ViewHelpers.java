@@ -1,9 +1,10 @@
 package com.wordgame;
 
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -14,19 +15,8 @@ public class ViewHelpers {
         throw new UnsupportedOperationException("Cannot instantiate service helper class.");
     }
 
-    public static void RenderView(FXMLLoader viewLoader, Stage currentWindow) throws IOException {
-        // Load the FXML into memory.
-        Pane root = viewLoader.load();
-
-        // Create a new scene to render into the window.
-        Scene newScene = new Scene(root);
-
-        // Set up the stage with the new scene.
-        currentWindow.setResizable(true);
-        currentWindow.setTitle("Diction-ary");
-        currentWindow.setScene(newScene);
-
-        currentWindow.show();
+    public static Stage GetStageFromEvent(Event event) {
+        return (Stage) ((Node)event.getSource()).getScene().getWindow();
     }
 
     /**

@@ -56,7 +56,7 @@ public class WordLadderController {
      * @param word The word associated with the textbox to be rendered.
      */
     private void RenderWordTextBox(WordModel word) {
-        final var description = word.getDescription();
+        final var description = word.Description;
 
         // Build container that holds the entire instance of a word input.
         var wordContainer = new VBox();
