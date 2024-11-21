@@ -4,6 +4,7 @@ AS BEGIN
 	SELECT *
 	FROM WordLadder
 END
+GO
 
 -- Stored Procedure for selecting all from Jumble
 CREATE PROCEDURE sp_JumbleData
@@ -11,6 +12,7 @@ AS BEGIN
 	SELECT *
 	FROM Jumble
 END
+GO
 
 -- Stored Procedure for selecting all from GameConfig
 CREATE PROCEDURE sp_GameConfigData
@@ -18,6 +20,7 @@ AS BEGIN
 	SELECT *
 	FROM GameConfig
 END
+GO
 
 -- Stored Procedure for grabbing a random word ladder game configuration
 CREATE PROCEDURE sp_GetRandomWordLadderGame
@@ -59,6 +62,7 @@ AS BEGIN
 	FROM GameConfig
 	WHERE Id = @Id
 END
+GO
 
 -- Stored Procedure to join WordLadder table and GameConfig table
 -- to display a list of all games
@@ -68,6 +72,7 @@ AS BEGIN
 	FROM WordLadder wl
 	JOIN GameConfig gc ON gc.Id = wl.GameId
 END
+GO
 
 -- Stored Procedure to join Jumble table and GameConfig table
 -- to display a list of all games
@@ -77,6 +82,7 @@ AS BEGIN
 	FROM Jumble j
 	JOIN GameConfig gc ON gc.Id = j.GameId
 END
+GO
 
 CREATE PROC sp_WordLadderValidateInput
 (
@@ -111,6 +117,7 @@ BEGIN
     END
     ELSE SELECT 0
 END
+GO
 
 /*
 -- Example Execution Commands for Stored Procedures
