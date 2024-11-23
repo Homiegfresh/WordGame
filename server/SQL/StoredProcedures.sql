@@ -45,10 +45,10 @@ CREATE PROCEDURE sp_GetRandomJumbleGame
 AS BEGIN
     SELECT TOP 1
         j.Id,
-        JSON_QUERY(j.[FinalWord]) AS Definition,
-		JSON_QUERY(gc.[Definition]) AS Definition
+        JSON_QUERY(j.[FinalWord]) [FinalWord],
+        JSON_QUERY(gc.[Definition]) [Definition]
     FROM Jumble j
-    JOIN GameConfig gc ON gc.Id = j.GameId
+             JOIN GameConfig gc ON gc.Id = j.GameId
     WHERE Difficulty = @Difficulty
     ORDER BY NEWID()
     FOR JSON PATH, WITHOUT_ARRAY_WRAPPER

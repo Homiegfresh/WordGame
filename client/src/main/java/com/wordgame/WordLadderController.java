@@ -13,8 +13,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.util.Objects;
-
 public class WordLadderController {
     private WordLadderGameModel Model;
     private int TotalGameWords = 0;

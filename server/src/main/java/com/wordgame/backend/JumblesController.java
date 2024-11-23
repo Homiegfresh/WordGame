@@ -24,7 +24,7 @@ public class JumblesController {
     @GetMapping("/RandomGame")
     public ResponseEntity<String> RandomWordLadderGame(@RequestParam int difficulty) {
         try (Connection connection = Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();
-             CallableStatement callableStatement = connection.prepareCall("{call sp_GetRandomJumblesGame(?)}")) {
+             CallableStatement callableStatement = connection.prepareCall("{call sp_GetRandomJumbleGame(?)}")) {
              callableStatement.setInt(1, difficulty);
 
              // Execute the stored procedure
