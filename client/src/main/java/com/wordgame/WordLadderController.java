@@ -13,13 +13,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class WordLadderController {
     private WordLadderGameModel Model;
     private int TotalGameWords = 0;
     private int CurrentWordIndex = -1;
 
     public Button HomeButton;
-
     public VBox GameContainer;
     public Label StartingWordLabel;
     public Label FinalWordLabel;
@@ -88,16 +89,37 @@ public class WordLadderController {
         CurrentWordIndex++;
     }
 
+    private boolean IsSolvingCurrentWord(String word) {
+        var wordCount = Model.GameConfig.GameWords.size();
+        for (var i = 0; i < wordCount; i++) {
+            // Skip if we are checking the current word.
+            // We still need to check that they are not solving a future word.
+            if (i == CurrentWordIndex) continue;
+
+            // Get the value of the current configuration word we are checking.
+            var gameConfigWordValue = Model.GameConfig.GameWords.get(i).Word;
+
+            // If there is a match they are not solving the current word.
+            if (word.equals(gameConfigWordValue)) return false;
+        }
+
+        return true;
+    }
+
     private Button BuildValidationButton() {
         var validationButton = new Button("Validate");
 
         validationButton.setOnMouseClicked(event -> {
             HBox container = (HBox)validationButton.getParent();
             TextField textbox = (TextField)container.getChildren().getFirst();
+            String wordValue = textbox.getText();
 
-            var wordValue = textbox.getText();
+            var isSolvingCurrentWord = IsSolvingCurrentWord(wordValue);
+            if (!isSolvingCurrentWord) {
+                return;
+            }
+
             var isValid = ValidateWordEntry(wordValue);
-
             if (isValid) {
                 if (CurrentWordIndex + 1 >= TotalGameWords) {
                     var stage = (Stage)validationButton.getScene().getWindow();
@@ -107,6 +129,7 @@ public class WordLadderController {
 
                 var nextWord = Model.GameConfig.GameWords.get(CurrentWordIndex + 1);
                 RenderWordTextBox(nextWord);
+                validationButton.setVisible(false);
             }
             else {
                 // TODO: Show message that user got it wrong. Maybe keep score?
