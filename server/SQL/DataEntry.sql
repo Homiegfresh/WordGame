@@ -318,63 +318,63 @@ VALUES (
 -- Inserting Data Fields
 -- Difficulty Level: Easy
 INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
-Values('Love', 'Dish', 1, 1);
+Values('Love', 'Dish', 1, @@IDENTITY);
 GO
 
 INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
-Values('Hide', 'Bend', 1, 2);
+Values('Hide', 'Bend', 1, @@IDENTITY);
 GO
 
 INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
-Values('Seed', 'Glow', 1, 3);
+Values('Seed', 'Glow', 1, @@IDENTITY);
 GO
 
 INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
-Values('Play', 'Clap', 1, 4);
+Values('Play', 'Clap', 1, @@IDENTITY);
 GO
 
 INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
-Values('Wine', 'Bear', 1, 5);
+Values('Wine', 'Bear', 1, @@IDENTITY);
 GO
 
 -- Difficulty Level: Medium
 INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
-Values('Brook', 'Gleam', 2, 6);
+Values('Brook', 'Gleam', 2, @@IDENTITY);
 GO
 
 INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
-Values('Focus', 'Lurid', 2, 7);
+Values('Focus', 'Lurid', 2, @@IDENTITY);
 GO
 
 INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
-Values('Plane', 'Truce', 2, 8);
+Values('Plane', 'Truce', 2, @@IDENTITY);
 GO
 
 INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
-Values('Shake', 'Scale', 2, 9);
+Values('Shake', 'Scale', 2, @@IDENTITY);
 GO
 
 INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
-Values('Think', 'Share', 2, 10);
+Values('Think', 'Share', 2, @@IDENTITY);
 GO
 
 -- Difficulty Level: Hard
 INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
-Values('Stones', 'Shores', 3, 11);
+Values('Stones', 'Shores', 3, @@IDENTITY);
 GO
 
 INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
-Values('Cuddle', 'Caddle', 3, 12);
+Values('Cuddle', 'Caddle', 3, @@IDENTITY);
 GO
 
 INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
-Values('Planet', 'Brazer', 3, 13);
+Values('Planet', 'Brazer', 3, @@IDENTITY);
 GO
 
 INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
-Values('Batter', 'Hatter', 3, 14);
+Values('Batter', 'Hatter', 3, @@IDENTITY);
 GO
 
 INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
-Values('Dinner', 'Finder', 3, 15);
+Values('Dinner', 'Finder', 3, @@IDENTITY);
 GO
