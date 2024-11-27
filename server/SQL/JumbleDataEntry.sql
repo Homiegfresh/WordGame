@@ -19,12 +19,12 @@ VALUES ('[
     },
     {
         "Word": "Slay",
-        "Description": "The knight is off to ____ the dragon.",
+        "Description": "To kill or defeat someone or something.",
         "SignificantChars": "1000"
     },
     {
         "Word": "bEnd",
-        "Description": "The strongman was able to easily ____ the metal pole.",
+        "Description": "To shape something into a curve.",
         "SignificantChars": "0100"
     }
 ]')
