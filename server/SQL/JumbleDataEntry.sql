@@ -97,9 +97,9 @@ VALUES ('[
         "SignificantChars": "0100"
     },
     {
-        "Word": "hoWI",
-        "Description": "An uncommon or poetic expression for how.",
-        "SignificantChars": "0011"
+        "Word": "hoWl",
+        "Description": "The call of a wolf.",
+        "SignificantChars": "0010"
     },
     {
         "Word": "greAt",
