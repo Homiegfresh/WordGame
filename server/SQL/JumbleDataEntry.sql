@@ -36,8 +36,8 @@ Values( '{"Word": "Dose", "Description": "A quantity of medicine to be taken at 
 INSERT INTO GameConfig ([Definition])
 VALUES ('[
     {
-        "Word": "blne",
-        "Description": "An abbreviation or shortened form of the word blind.",
+        "Word": "bIne",
+        "Description": "A long, flexible stem of a climbing plant.",
         "SignificantChars": "0000"
     },
     {
