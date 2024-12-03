@@ -38,7 +38,7 @@ VALUES ('[
     {
         "Word": "bIne",
         "Description": "A long, flexible stem of a climbing plant.",
-        "SignificantChars": "0000"
+        "SignificantChars": "0100"
     },
     {
         "Word": "sHorts",
