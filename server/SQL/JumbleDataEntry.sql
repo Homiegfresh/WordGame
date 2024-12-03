@@ -9,7 +9,7 @@ INSERT INTO GameConfig ([Definition])
 VALUES ('[
     {
         "Word": "stOres",
-        "Description": "Place where you buy groceries.",
+        "Description": "Places where goods are sold.",
         "SignificantChars": "001000"
     },
     {
@@ -65,7 +65,7 @@ INSERT INTO GameConfig ([Definition])
 VALUES ('[
     {
         "Word": "Lucis",
-        "Description": "A name or a variation of Lucas.",
+        "Description": "A Latin word meaning light, often used in names or expressions.",
         "SignificantChars": "10000"
     },
     {
@@ -114,7 +114,7 @@ VALUES ('[
 ]')
 
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
-VALUES('{"Word": "Ware", "Description": "Goods for sale."}', 1, @@IDENTITY);
+VALUES('{"Word": "Ware", "Description": "Goods or merchandise, usually sold."}', 1, @@IDENTITY);
 
 ------------------------------------------------------------
 
@@ -128,7 +128,7 @@ VALUES ('[
     },
     {
         "Word": "Matter",
-        "Description": "Physical substance or importance.",
+        "Description": "A substance that makes up physical objects, or an important issue.",
         "SignificantChars": "100000"
     },
     {
@@ -143,13 +143,13 @@ VALUES ('[
     },
     {
         "Word": "bLoom",
-        "Description": "A flower in the stage of flowering.",
+        "Description": "A flower, or the state of flowering.",
         "SignificantChars": "01000"
     }
 ]')
 
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
-VALUES('{"Word": "Gloom", "Description": "Partial or total darkness."}', 2, @@IDENTITY);
+VALUES('{"Word": "Gloom", "Description": "A state of darkness or sadness."}', 2, @@IDENTITY);
 
 -- Jumbles Game 2, Medium
 INSERT INTO GameConfig
@@ -327,7 +327,7 @@ VALUES ('[
 ]')
 
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
-VALUES('{"Word": "Fuddle", "Description": "Confuse or make muddled."}', 3, @@IDENTITY);
+VALUES('{"Word": "Fuddle", "Description": "To confuse or bewilder someone, often with alcohol."}', 3, @@IDENTITY);
 GO
 
 -- Jumbles Game 3, Hard
@@ -405,5 +405,5 @@ VALUES ('[
 ]')
 
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
-VALUES('{"Word": "Caddle", "Description": "Act in a silly or unproductive manner."}', 3, @@IDENTITY);
+VALUES('{"Word": "Caddle", "Description": "To confuse, annoy, or tease another person."}', 3, @@IDENTITY);
 GO
