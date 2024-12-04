@@ -18,6 +18,8 @@ public class JumblesController {
     /// Holds the model representing the game.
     private JumbleGameModel Model;
     private String USER_FINAL_WORD = "";
+    private ArrayList<TextField> WordTextboxes =  new ArrayList<>();
+
     @FXML
     public VBox GameContainer;
 
@@ -34,7 +36,7 @@ public class JumblesController {
         }
         //Displays every word but final
         for (var word:Model.GameConfig.GameWords) {
-        RenderWordTextBox(word);
+            RenderWordTextBox(word);
         }
     }
 
@@ -72,13 +74,18 @@ public class JumblesController {
         // Add the description label above where the textbox will be.
         wordContainer.getChildren().add(wordDescriptionLabel);
         wordContainer.getChildren().add(wordLetters);
+
         // Make a new container where the textbox and validation button will be.
         var textBoxContainer = new HBox();
         textBoxContainer.setAlignment(Pos.TOP_CENTER);
-        textBoxContainer.getChildren().add(new TextField());
+
+        var userInputTextbox = new TextField();
+        WordTextboxes.add(userInputTextbox);
+
+        textBoxContainer.getChildren().add(userInputTextbox);
         wordContainer.getChildren().add(textBoxContainer);
 
-        int theLetter = ImportantLetter(word);;
+        int theLetter = ImportantLetter(word);
         var validationButton = BuildValidationButton(theLetter);
 
         // Add validation button to the container with the textbox.

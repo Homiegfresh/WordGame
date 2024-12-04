@@ -21,6 +21,11 @@ public class WordLadderController {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    /**
+     * This endpoint fetches a random word ladder game.
+     * @param difficulty Difficulty of the game.
+     * @return JSON for WordLadderModel.
+     */
     @GetMapping("/RandomGame")
     public ResponseEntity<String> RandomWordLadderGame(@RequestParam int difficulty) {
         try (Connection connection = Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();
