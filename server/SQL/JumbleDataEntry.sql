@@ -116,9 +116,7 @@ VALUES ('[
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
 VALUES('{"Word": "Ware", "Description": "Goods or merchandise, usually sold."}', 1, @@IDENTITY);
 
-------------------------------------------------------------
-
--- Jumbles Game 1, Medium
+-- Jumbles Game 5, Medium
 INSERT INTO GameConfig
 VALUES ('[
     {
@@ -151,7 +149,7 @@ VALUES ('[
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
 VALUES('{"Word": "Gloom", "Description": "A state of darkness or sadness."}', 2, @@IDENTITY);
 
--- Jumbles Game 2, Medium
+-- Jumbles Game 6, Medium
 INSERT INTO GameConfig
 VALUES ('[
     {
@@ -184,7 +182,7 @@ VALUES ('[
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
 VALUES('{"Word": "Lucid", "Description": "Clear and easy to understand."}', 2, @@IDENTITY);
 
--- Jumbles Game 3, Medium
+-- Jumbles Game 7, Medium
 INSERT INTO GameConfig
 VALUES ('[
     {
@@ -218,7 +216,7 @@ VALUES ('[
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
 VALUES('{"Word": "Shark", "Description": "A large, predatory fish."}', 2, @@IDENTITY);
 
--- Jumbles Game 4, Medium
+-- Jumbles Game 8, Medium
 INSERT INTO GameConfig
 VALUES ('[
     {
@@ -251,9 +249,7 @@ VALUES ('[
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
 VALUES('{"Word": "Gleam", "Description": "A faint or brief light."}', 2, @@IDENTITY);
 
-------------------------------------------------------------
-
--- Jumbles Game 1, Hard
+-- Jumbles Game 9, Hard
 INSERT INTO GameConfig
 VALUES ('[
     {
@@ -291,7 +287,7 @@ VALUES ('[
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
 VALUES('{"Word": "Shores", "Description": "Land along the edge of a sea, lake, or ocean."}', 3, @@IDENTITY);
 
--- Jumbles Game 2, Hard
+-- Jumbles Game 10, Hard
 INSERT INTO GameConfig
 VALUES ('[
     {
@@ -330,7 +326,7 @@ INSERT INTO Jumble(FinalWord, Difficulty, GameId)
 VALUES('{"Word": "Fuddle", "Description": "To confuse or bewilder someone, often with alcohol."}', 3, @@IDENTITY);
 GO
 
--- Jumbles Game 3, Hard
+-- Jumbles Game 11, Hard
 INSERT INTO GameConfig
 VALUES ('[
     {
@@ -369,7 +365,7 @@ INSERT INTO Jumble(FinalWord, Difficulty, GameId)
 VALUES('{"Word": "Finger", "Description": "One of the five digits of the hand."}', 3, @@IDENTITY);
 GO
 
--- Jumbles Game 4, Hard
+-- Jumbles Game 12, Hard
 INSERT INTO GameConfig
 VALUES ('[
     {

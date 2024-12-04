@@ -6,7 +6,7 @@ IF EXISTS(SELECT Name FROM sys.databases WHERE Name = 'WordGames')
 DROP DATABASE WordGames
 GO
 
---Creating new database
+--Creating new database for WordGames
 CREATE DATABASE WordGames
 GO
 
@@ -14,8 +14,7 @@ GO
 USE WordGames
 GO
 
--- Create table for Exercise
--- NOTE: Records from this table are deleted when games are deleted.
+-- Create table for GameConfig
 CREATE TABLE GameConfig
 (
     [Id] INT IDENTITY(1,1) PRIMARY KEY,
@@ -24,7 +23,8 @@ CREATE TABLE GameConfig
 GO
 
 -- Create table for WordLadder
--- Storing difficulty level instead of letter count?
+-- Storing difficulty level instead of letter count
+-- Difficulty level is still based on letter count
 CREATE TABLE WordLadder
 (
     Id INT IDENTITY(1,1) PRIMARY KEY,
@@ -37,9 +37,6 @@ CREATE TABLE WordLadder
 GO
 
 -- Create table for Jumble
--- ********** Need for holding final word's definition?
--- Storing difficulty level instead of letter count?
-
 CREATE TABLE Jumble
 (
     Id INT IDENTITY(1,1) PRIMARY KEY,

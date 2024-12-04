@@ -1,6 +1,7 @@
 -- Query for all word ladder data entry
--- Inserting Data Fields into the GameConfig Table
+-- Inserting Data Fields into the GameConfig and WordLadder Tables
 
+-- Easy Difficulty Games
 -- Game1
 INSERT INTO [GameConfig] ([Definition])
 VALUES (
@@ -111,6 +112,7 @@ INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
 Values('Wine', 'Bear', 1, @@IDENTITY);
 GO
 
+-- Medium Difficulty Games
 -- Game6
 INSERT INTO [GameConfig] ([Definition])
 VALUES (
@@ -233,6 +235,7 @@ INSERT INTO WordLadder(FirstWord, LastWord, Difficulty, GameId)
 Values('Think', 'Share', 2, @@IDENTITY);
 GO
 
+-- Hard Difficulty Level Games
 -- Game11
 INSERT INTO [GameConfig] ([Definition])
 VALUES (
