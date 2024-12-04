@@ -9,7 +9,7 @@ INSERT INTO GameConfig ([Definition])
 VALUES ('[
     {
         "Word": "stOres",
-        "Description": "Place where you buy groceries.",
+        "Description": "Places where goods are sold.",
         "SignificantChars": "001000"
     },
     {
@@ -19,12 +19,12 @@ VALUES ('[
     },
     {
         "Word": "Slay",
-        "Description": "The knight is off to ____ the dragon.",
+        "Description": "To kill or defeat someone or something.",
         "SignificantChars": "1000"
     },
     {
         "Word": "bEnd",
-        "Description": "The strongman was able to easily ____ the metal pole.",
+        "Description": "To shape something into a curve.",
         "SignificantChars": "0100"
     }
 ]')
@@ -36,9 +36,9 @@ Values( '{"Word": "Dose", "Description": "A quantity of medicine to be taken at 
 INSERT INTO GameConfig ([Definition])
 VALUES ('[
     {
-        "Word": "blne",
-        "Description": "An abbreviation or shortened form of the word blind.",
-        "SignificantChars": "0000"
+        "Word": "bIne",
+        "Description": "A long, flexible stem of a climbing plant.",
+        "SignificantChars": "0100"
     },
     {
         "Word": "sHorts",
@@ -65,7 +65,7 @@ INSERT INTO GameConfig ([Definition])
 VALUES ('[
     {
         "Word": "Lucis",
-        "Description": "A name or a variation of Lucas.",
+        "Description": "A Latin word meaning light, often used in names or expressions.",
         "SignificantChars": "10000"
     },
     {
@@ -97,9 +97,9 @@ VALUES ('[
         "SignificantChars": "0100"
     },
     {
-        "Word": "hoWI",
-        "Description": "An uncommon or poetic expression for how.",
-        "SignificantChars": "0011"
+        "Word": "hoWl",
+        "Description": "The call of a wolf.",
+        "SignificantChars": "0010"
     },
     {
         "Word": "greAt",
@@ -114,11 +114,9 @@ VALUES ('[
 ]')
 
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
-VALUES('{"Word": "Ware", "Description": "Goods for sale."}', 1, @@IDENTITY);
+VALUES('{"Word": "Ware", "Description": "Goods or merchandise, usually sold."}', 1, @@IDENTITY);
 
-------------------------------------------------------------
-
--- Jumbles Game 1, Medium
+-- Jumbles Game 5, Medium
 INSERT INTO GameConfig
 VALUES ('[
     {
@@ -128,7 +126,7 @@ VALUES ('[
     },
     {
         "Word": "Matter",
-        "Description": "Physical substance or importance.",
+        "Description": "A substance that makes up physical objects, or an important issue.",
         "SignificantChars": "100000"
     },
     {
@@ -143,15 +141,15 @@ VALUES ('[
     },
     {
         "Word": "bLoom",
-        "Description": "A flower in the stage of flowering.",
+        "Description": "A flower, or the state of flowering.",
         "SignificantChars": "01000"
     }
 ]')
 
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
-VALUES('{"Word": "Gloom", "Description": "Partial or total darkness."}', 2, @@IDENTITY);
+VALUES('{"Word": "Gloom", "Description": "A state of darkness or sadness."}', 2, @@IDENTITY);
 
--- Jumbles Game 2, Medium
+-- Jumbles Game 6, Medium
 INSERT INTO GameConfig
 VALUES ('[
     {
@@ -184,7 +182,7 @@ VALUES ('[
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
 VALUES('{"Word": "Lucid", "Description": "Clear and easy to understand."}', 2, @@IDENTITY);
 
--- Jumbles Game 3, Medium
+-- Jumbles Game 7, Medium
 INSERT INTO GameConfig
 VALUES ('[
     {
@@ -218,7 +216,7 @@ VALUES ('[
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
 VALUES('{"Word": "Shark", "Description": "A large, predatory fish."}', 2, @@IDENTITY);
 
--- Jumbles Game 4, Medium
+-- Jumbles Game 8, Medium
 INSERT INTO GameConfig
 VALUES ('[
     {
@@ -251,9 +249,7 @@ VALUES ('[
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
 VALUES('{"Word": "Gleam", "Description": "A faint or brief light."}', 2, @@IDENTITY);
 
-------------------------------------------------------------
-
--- Jumbles Game 1, Hard
+-- Jumbles Game 9, Hard
 INSERT INTO GameConfig
 VALUES ('[
     {
@@ -291,7 +287,7 @@ VALUES ('[
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
 VALUES('{"Word": "Shores", "Description": "Land along the edge of a sea, lake, or ocean."}', 3, @@IDENTITY);
 
--- Jumbles Game 2, Hard
+-- Jumbles Game 10, Hard
 INSERT INTO GameConfig
 VALUES ('[
     {
@@ -327,10 +323,10 @@ VALUES ('[
 ]')
 
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
-VALUES('{"Word": "Fuddle", "Description": "Confuse or make muddled."}', 3, @@IDENTITY);
+VALUES('{"Word": "Fuddle", "Description": "To confuse or bewilder someone, often with alcohol."}', 3, @@IDENTITY);
 GO
 
--- Jumbles Game 3, Hard
+-- Jumbles Game 11, Hard
 INSERT INTO GameConfig
 VALUES ('[
     {
@@ -369,7 +365,7 @@ INSERT INTO Jumble(FinalWord, Difficulty, GameId)
 VALUES('{"Word": "Finger", "Description": "One of the five digits of the hand."}', 3, @@IDENTITY);
 GO
 
--- Jumbles Game 4, Hard
+-- Jumbles Game 12, Hard
 INSERT INTO GameConfig
 VALUES ('[
     {
@@ -405,5 +401,5 @@ VALUES ('[
 ]')
 
 INSERT INTO Jumble(FinalWord, Difficulty, GameId)
-VALUES('{"Word": "Caddle", "Description": "Act in a silly or unproductive manner."}', 3, @@IDENTITY);
+VALUES('{"Word": "Caddle", "Description": "To confuse, annoy, or tease another person."}', 3, @@IDENTITY);
 GO
