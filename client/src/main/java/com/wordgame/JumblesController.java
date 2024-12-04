@@ -11,14 +11,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.util.*;
 
 public class JumblesController {
     /// Holds the model representing the game.
     private JumbleGameModel Model;
-    private String USER_FINAL_WORD = "";
+    private String UserMadeFinal = "";
     private ArrayList<TextField> WordTextboxes =  new ArrayList<>();
+    private List<Integer> TheLettersOver = new ArrayList<Integer>();
+    private boolean Displayed = false;
 
     @FXML
     public VBox GameContainer;
@@ -38,6 +41,11 @@ public class JumblesController {
         for (var word:Model.GameConfig.GameWords) {
             RenderWordTextBox(word);
         }
+        var root = new HBox();
+        var validationButton = BuildValidationButton();
+        root.setAlignment(Pos.TOP_CENTER);
+        root.getChildren().add(validationButton);
+        GameContainer.getChildren().add(root);
     }
 
     @FXML
@@ -49,19 +57,8 @@ public class JumblesController {
         final var description = word.Description;
         String scrambled;
         String scramble = word.Word.toLowerCase();
-        do {
-            ArrayList<Character> chars = new ArrayList<Character>(scramble.length());
-            for (char letter : scramble.toCharArray()) {
-                chars.add(letter);
-            }
-            Collections.shuffle(chars);
-            char[] shuffled = new char[chars.size()];
-            for (int i = 0; i < shuffled.length; i++) {
-                shuffled[i] = chars.get(i);
-            }
-            scrambled = new String(shuffled);
-        } while (scrambled.equals(scramble));
 
+        scrambled = Scrambler(scramble, scramble);
         // Build container that holds the entire instance of a word input.
         var wordContainer = new VBox();
         wordContainer.setAlignment(Pos.TOP_CENTER);
@@ -84,31 +81,28 @@ public class JumblesController {
 
         textBoxContainer.getChildren().add(userInputTextbox);
         wordContainer.getChildren().add(textBoxContainer);
-
-        int theLetter = ImportantLetter(word);
-        var validationButton = BuildValidationButton(theLetter);
-
-        // Add validation button to the container with the textbox.
-        textBoxContainer.getChildren().add(validationButton);
+        TheLettersOver.add(ImportantLetter(word));
 
         GameContainer.getChildren().add(wordContainer);
     }
 
-    private Button BuildValidationButton(int theLetter) {
+    private Button BuildValidationButton() {
         var validationButton = new Button("Validate");
 
         validationButton.setOnMouseClicked(event -> {
-            HBox container = (HBox)validationButton.getParent();
-            TextField textbox = (TextField)container.getChildren().getFirst();
 
-            var wordValue = textbox.getText();
-            ArrayList<Character> chars = new ArrayList<Character>(wordValue.length());
-            for (char letter : wordValue.toCharArray()) {
-                chars.add(letter);
+            for (int i = 0; i < WordTextboxes.size(); i++) {
+                TextField textbox = WordTextboxes.get(i);
+                var wordValue = textbox.getText();
+                int theLetter = TheLettersOver.get(i);
+                ArrayList<Character> chars = new ArrayList<Character>(wordValue.length());
+                for (char letter : wordValue.toCharArray()) {
+                    chars.add(letter);
+                }
+                char letter = chars.get(theLetter);
+                UserMadeFinal = UserMadeFinal + letter;
             }
-            char letter = chars.get(theLetter);
-            USER_FINAL_WORD = USER_FINAL_WORD + letter;
-            
+            RenderFinalWordTextBox(UserMadeFinal);
         });
         return validationButton;
     }
@@ -126,7 +120,98 @@ public class JumblesController {
             }
             lettersOver = 1 + lettersOver;
         }
-        return 0;
+        lettersOver = 0;
+        return lettersOver;
     }
-}
 
+    private void RenderFinalWordTextBox(String word) {
+        final var description = Model.FinalWord.Description;
+        String finalRightWord = Model.FinalWord.Word;
+        String scrambled;
+        String scramble = word.toLowerCase();
+
+        scrambled = Scrambler(scramble, finalRightWord);
+
+        // Build container that holds the entire instance of a word input.
+        var wordContainer = new VBox();
+        wordContainer.setAlignment(Pos.TOP_CENTER);
+        var wordDescriptionLabel = new Label(description);
+        var wordLetters = new Label(scrambled);
+
+        // This prevents the UI from cutting off the text of the description.
+        wordDescriptionLabel.setWrapText(true);
+
+        // Add the description label above where the textbox will be.
+        wordContainer.getChildren().add(wordDescriptionLabel);
+        wordContainer.getChildren().add(wordLetters);
+
+        // Make a new container where the textbox and validation button will be.
+        var textBoxContainer = new HBox();
+        textBoxContainer.setAlignment(Pos.TOP_CENTER);
+
+        var userInputTextbox = new TextField();
+
+        textBoxContainer.getChildren().add(userInputTextbox);
+        wordContainer.getChildren().add(textBoxContainer);
+         var validationButton = BuildFinalValidationButton();
+
+        // Add validation button to the container with the textbox.
+        textBoxContainer.getChildren().add(validationButton);
+
+        GameContainer.getChildren().add(wordContainer);
+    }
+
+    private Button BuildFinalValidationButton() {
+        var validationButton = new Button("Validate");
+
+        validationButton.setOnMouseClicked(event -> {
+            HBox container = (HBox)validationButton.getParent();
+            TextField textbox = (TextField)container.getChildren().getFirst();
+
+            var wordValue = textbox.getText();
+            var isValid = ValidateWordEntry(wordValue);
+
+            if (isValid) {
+                var stage = (Stage)validationButton.getScene().getWindow();
+                ViewHelpers.Navigate(stage, "WinScreen.fxml", null);
+                return;
+            }
+            if (!Displayed) {
+                var error = new VBox();
+                error.setAlignment(Pos.CENTER_RIGHT);
+                var messege = new Label("It seems like you messed up somewhere.");
+                error.getChildren().add(messege);
+                GameContainer.getChildren().add(error);
+                Displayed = true;
+            }
+
+        });
+        return validationButton;
+    }
+
+    private boolean ValidateWordEntry(String word) {
+        String rightWord = Model.FinalWord.Word.toLowerCase();
+        word = word.toLowerCase();
+
+        if (word.equals(rightWord)) {
+            return true;
+        }
+        return false;
+    }
+    private String Scrambler(String word, String rightWord) {
+        do {
+            ArrayList<Character> chars = new ArrayList<Character>(word.length());
+            for (char letter : word.toCharArray()) {
+                chars.add(letter);
+            }
+            Collections.shuffle(chars);
+            char[] shuffled = new char[chars.size()];
+            for (int i = 0; i < shuffled.length; i++) {
+                shuffled[i] = chars.get(i);
+            }
+            word = new String(shuffled);
+        } while (word.equals(rightWord));
+        return word;
+    }
+
+}
