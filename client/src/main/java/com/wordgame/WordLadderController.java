@@ -3,6 +3,7 @@ package com.wordgame;
 import com.wordgame.models.WordLadderGameModel;
 import com.wordgame.models.WordModel;
 import com.wordgame.models.enums.GameDifficulty;
+import com.wordgame.models.enums.GameType;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -121,6 +122,7 @@ public class WordLadderController {
             if (isValid) {
                 if (CurrentWordIndex + 1 >= TotalGameWords) {
                     var stage = (Stage)validationButton.getScene().getWindow();
+                    WinScreenController.SetGameType(GameType.WordLadder);
                     ViewHelpers.Navigate(stage, "WinScreen.fxml", null);
                     return;
                 }

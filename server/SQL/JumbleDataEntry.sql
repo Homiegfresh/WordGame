@@ -74,9 +74,9 @@ VALUES ('[
         "SignificantChars": "10000"
     },
     {
-        "Word": "gaLlop",
-        "Description": "How a horse runs at full speed.",
-        "SignificantChars": "001000"
+        "Word": "Young",
+        "Description": "The age of a minor.",
+        "SignificantChars": "10000"
     },
     {
         "Word": "samPle",
