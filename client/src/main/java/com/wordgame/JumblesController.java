@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.util.*;
 
+/// This controller handles the activities within the Jumbles game.
 public class JumblesController {
     /// Holds the model representing the game.
     private JumbleGameModel Model;
@@ -51,11 +52,21 @@ public class JumblesController {
         GameContainer.getChildren().add(root);
     }
 
+
+    /**
+     * Redirects the user home upon clicking the home button.
+     * @param event The on click event.
+     */
     @FXML
     public void RedirectHome(MouseEvent event) {
         var stage = ViewHelpers.GetStageFromEvent(event);
         ViewHelpers.RedirectHome(stage);
     }
+
+    /**
+     * This renders a textbox on the UI given a word.
+     * @param word The model of the word the textbox is bound to.
+     */
     private void RenderWordTextBox(WordModel word) {
         final var description = word.Description;
         String scrambled;
@@ -89,6 +100,7 @@ public class JumblesController {
         GameContainer.getChildren().add(wordContainer);
     }
 
+    /// This action will generate a validation button that will be added with the text input.
     private Button BuildValidationButton() {
         var validationButton = new Button("Validate");
 
