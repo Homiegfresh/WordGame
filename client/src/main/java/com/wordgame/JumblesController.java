@@ -21,7 +21,9 @@ public class JumblesController {
     private String UserMadeFinal = "";
     private ArrayList<TextField> WordTextboxes =  new ArrayList<>();
     private List<Integer> TheLettersOver = new ArrayList<Integer>();
-    private boolean Displayed = false;
+    private boolean DisplayError = false;
+    private boolean DisplayLetters = false;
+    private Label wordLetters;
 
     @FXML
     public VBox GameContainer;
@@ -103,6 +105,7 @@ public class JumblesController {
                 UserMadeFinal = UserMadeFinal + letter;
             }
             RenderFinalWordTextBox(UserMadeFinal);
+            UserMadeFinal = "";
         });
         return validationButton;
     }
@@ -133,32 +136,39 @@ public class JumblesController {
         scrambled = Scrambler(scramble, finalRightWord);
 
         // Build container that holds the entire instance of a word input.
-        var wordContainer = new VBox();
-        wordContainer.setAlignment(Pos.TOP_CENTER);
-        var wordDescriptionLabel = new Label(description);
-        var wordLetters = new Label(scrambled);
+        if (!DisplayLetters) {
+            var wordContainer = new VBox();
+            wordContainer.setAlignment(Pos.TOP_CENTER);
+            var wordDescriptionLabel = new Label(description);
 
-        // This prevents the UI from cutting off the text of the description.
-        wordDescriptionLabel.setWrapText(true);
+            wordLetters = new Label(scrambled);
+            DisplayLetters = true;
 
-        // Add the description label above where the textbox will be.
-        wordContainer.getChildren().add(wordDescriptionLabel);
-        wordContainer.getChildren().add(wordLetters);
+            // This prevents the UI from cutting off the text of the description.
+            wordDescriptionLabel.setWrapText(true);
 
-        // Make a new container where the textbox and validation button will be.
-        var textBoxContainer = new HBox();
-        textBoxContainer.setAlignment(Pos.TOP_CENTER);
+            // Add the description label above where the textbox will be.
+            wordContainer.getChildren().add(wordDescriptionLabel);
+            wordContainer.getChildren().add(wordLetters);
 
-        var userInputTextbox = new TextField();
+            // Make a new container where the textbox and validation button will be.
+            var textBoxContainer = new HBox();
+            textBoxContainer.setAlignment(Pos.TOP_CENTER);
 
-        textBoxContainer.getChildren().add(userInputTextbox);
-        wordContainer.getChildren().add(textBoxContainer);
-         var validationButton = BuildFinalValidationButton();
+            var userInputTextbox = new TextField();
 
-        // Add validation button to the container with the textbox.
-        textBoxContainer.getChildren().add(validationButton);
+            textBoxContainer.getChildren().add(userInputTextbox);
+            wordContainer.getChildren().add(textBoxContainer);
+            var validationButton = BuildFinalValidationButton();
 
-        GameContainer.getChildren().add(wordContainer);
+            // Add validation button to the container with the textbox.
+            textBoxContainer.getChildren().add(validationButton);
+
+            GameContainer.getChildren().add(wordContainer);
+        }
+        else {
+            wordLetters.setText(scrambled);
+        }
     }
 
     private Button BuildFinalValidationButton() {
@@ -176,13 +186,13 @@ public class JumblesController {
                 ViewHelpers.Navigate(stage, "WinScreen.fxml", null);
                 return;
             }
-            if (!Displayed) {
+            if (!DisplayError) {
                 var error = new VBox();
-                error.setAlignment(Pos.CENTER_RIGHT);
+                error.setAlignment(Pos.TOP_CENTER);
                 var messege = new Label("It seems like you messed up somewhere.");
                 error.getChildren().add(messege);
                 GameContainer.getChildren().add(error);
-                Displayed = true;
+                DisplayError = true;
             }
 
         });
