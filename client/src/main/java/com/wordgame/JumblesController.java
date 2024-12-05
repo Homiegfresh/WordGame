@@ -3,6 +3,7 @@ package com.wordgame;
 import com.wordgame.models.JumbleGameModel;
 import com.wordgame.models.WordModel;
 import com.wordgame.models.enums.GameDifficulty;
+import com.wordgame.models.enums.GameType;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -39,7 +40,7 @@ public class JumblesController {
             // TODO: Implement error screen.
             return;
         }
-        //Displays every word but final
+        //Displays every word but final word
         for (var word:Model.GameConfig.GameWords) {
             RenderWordTextBox(word);
         }
@@ -183,6 +184,7 @@ public class JumblesController {
 
             if (isValid) {
                 var stage = (Stage)validationButton.getScene().getWindow();
+                WinScreenController.SetGameType(GameType.Jumbles);
                 ViewHelpers.Navigate(stage, "WinScreen.fxml", null);
                 return;
             }

@@ -158,9 +158,9 @@ VALUES ('[
         "SignificantChars": "01000"
     },
     {
-        "Word": "cudDle",
+        "Word": "cuddLe",
         "Description": "To sleep close to another person.",
-        "SignificantChars": "000100"
+        "SignificantChars": "000010"
     },
     {
         "Word": "Dove",

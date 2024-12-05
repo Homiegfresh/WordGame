@@ -22,7 +22,7 @@ public class JumblesController {
     private JdbcTemplate jdbcTemplate;
 
     @GetMapping("/RandomGame")
-    public ResponseEntity<String> RandomWordLadderGame(@RequestParam int difficulty) {
+    public ResponseEntity<String> RandomJumbleGame(@RequestParam int difficulty) {
         try (Connection connection = Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();
              CallableStatement callableStatement = connection.prepareCall("{call sp_GetRandomJumbleGame(?)}")) {
              callableStatement.setInt(1, difficulty);
