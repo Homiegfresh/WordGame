@@ -15,12 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/// This controller is used for the backend operations of the Jumbles game.
 @RestController
 @RequestMapping("/api/Jumbles")
 public class JumblesController {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    /**
+     * This endpoint gets a random Jumbles game from the database.
+     * @param difficulty The difficulty of the game to return.
+     * @return Returns a JSON document representing the configuration of the random game.
+     */
     @GetMapping("/RandomGame")
     public ResponseEntity<String> RandomWordLadderGame(@RequestParam int difficulty) {
         try (Connection connection = Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();

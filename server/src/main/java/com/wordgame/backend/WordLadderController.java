@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/// This controller handles the backend operations of the Word Ladder game.
 @RestController
 @RequestMapping("/api/WordLadder")
 public class WordLadderController {
@@ -48,6 +49,12 @@ public class WordLadderController {
         }
     }
 
+    /**
+     * This endpoint validates the input of the user against the game they have been assigned.
+     * @param gameId The ID of the game the player is playing.
+     * @param word The word the player is trying to solve.
+     * @return Returns a boolean as a string value.
+     */
     @GetMapping("/ValidateInput")
     public ResponseEntity<String> ValidateInput(@RequestParam int gameId, @RequestParam String word) {
         try (Connection connection = Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();

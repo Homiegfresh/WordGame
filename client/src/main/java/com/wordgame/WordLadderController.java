@@ -23,6 +23,11 @@ public class WordLadderController {
     public Label StartingWordLabel;
     public Label FinalWordLabel;
 
+
+    /**
+     * This function initializes the game by fetching a game and rendering the UI for it.
+     * @param gameDifficulty The difficulty of the random game to be retrieved.
+     */
     public void initialize(GameDifficulty gameDifficulty) {
         Model = ServiceHelpers.GetRandomWordLadderGame(gameDifficulty);
 
@@ -45,6 +50,7 @@ public class WordLadderController {
         FinalWordLabel.setText("Final Word: " + Model.LastWord);
     }
 
+    /// Redirects the user to the home screen upon clicking the home button.
     @FXML
     public void RedirectHome(MouseEvent event) {
         var stage = (Stage) HomeButton.getScene().getWindow();
@@ -87,6 +93,11 @@ public class WordLadderController {
         CurrentWordIndex++;
     }
 
+    /**
+     * This function is used to validate that the user is solving the correct word.
+     * @param word The word the user submitted for validation.
+     * @return If the user is solving the correct word.
+     */
     private boolean IsSolvingCurrentWord(String word) {
         var wordCount = Model.GameConfig.GameWords.size();
         for (var i = 0; i < wordCount; i++) {
@@ -104,6 +115,7 @@ public class WordLadderController {
         return true;
     }
 
+    /// Builds the validation button that will be included with the user input.
     private Button BuildValidationButton() {
         var validationButton = new Button("Validate");
 
@@ -137,7 +149,7 @@ public class WordLadderController {
         return validationButton;
     }
 
-    // Makes a call to the server to validate the word.
+    /// Makes a call to the server to validate the word.
     private boolean ValidateWordEntry(String word) {
         return ServiceHelpers.ValidateWordLadderInput(Model.Id, word);
     }

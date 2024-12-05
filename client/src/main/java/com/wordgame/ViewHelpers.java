@@ -10,7 +10,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.function.Consumer;
 
+/// This class is meant to be a helper class for application navigation.
 public class ViewHelpers {
+    /// IMPORTANT: This class should never be instantiated. However, this can only be done from inside this class.
+    /// This is meant to be a static class.
     private ViewHelpers() {
         throw new UnsupportedOperationException("Cannot instantiate service helper class.");
     }
@@ -58,6 +61,11 @@ public class ViewHelpers {
         }
     }
 
+
+    /**
+     * This is a helper function for navigating a user back to the home page.
+     * @param stage The current window of the application.
+     */
     public static void RedirectHome(Stage stage) {
         ViewHelpers.<HomeScreenController>Navigate(stage, "HomeScreen.fxml", controller ->
             controller.Initialize(stage)

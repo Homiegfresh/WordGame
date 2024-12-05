@@ -4,12 +4,8 @@ import com.wordgame.models.enums.GameDifficulty;
 import com.wordgame.models.enums.GameType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 /**
 * This class is used to determine what game configuration should be used for the instance of the game.

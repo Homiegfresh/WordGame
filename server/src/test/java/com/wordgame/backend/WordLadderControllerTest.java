@@ -18,27 +18,27 @@ class WordLadderControllerTest {
     @Autowired
     private JdbcTemplate jdbc;
 
-    private void createTable(String tableName) {
+    private void createTable() {
         try (var connection = Objects.requireNonNull(jdbc.getDataSource()).getConnection();
              var statement = connection.createStatement()) {
-            statement.execute("DROP TABLE IF EXISTS " + tableName);
-            statement.execute("CREATE TABLE " + tableName + " (Id INT NULL)");
+            statement.execute("DROP TABLE IF EXISTS " + "Test");
+            statement.execute("CREATE TABLE " + "Test" + " (Id INT NULL)");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private void deleteTable(String tableName) {
+    private void deleteTable() {
         try (var connection = Objects.requireNonNull(jdbc.getDataSource()).getConnection();
              var statement = connection.createStatement()) {
-            statement.execute("DROP TABLE IF EXISTS " + tableName);
+            statement.execute("DROP TABLE IF EXISTS " + "Test");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private boolean checkTableExists(String tableName) {
-        String checkTableSQL = "SELECT COUNT(*) FROM information_schema.tables WHERE table_name = '" + tableName.toUpperCase() + "'";
+    private boolean checkTableExists() {
+        String checkTableSQL = "SELECT COUNT(*) FROM information_schema.tables WHERE table_name = '" + "Test".toUpperCase() + "'";
         try (var connection = Objects.requireNonNull(jdbc.getDataSource()).getConnection();
              var statement = connection.createStatement();
              var rs = statement.executeQuery(checkTableSQL)) {
@@ -49,14 +49,14 @@ class WordLadderControllerTest {
     }
 
     @Test
-    void validateInput() {
-        createTable("Test");
+    void SqlInjectionTest() {
+        createTable();
 
         controller.ValidateInput(1, "''; DROP TABLE Games;--';");
 
-        var tableExists = checkTableExists("Test");
+        var tableExists = checkTableExists();
 
-        deleteTable("Test");
+        deleteTable();
 
         assertTrue(tableExists);
     }
